@@ -12,16 +12,24 @@
 <helmet>
 <meta name="color-scheme" content="light only">
 <meta name="darkreader-lock" content="">
+<link rel="icon" type="image/webp" href="preview.webp">
 <script src="guard.js"></script>
 <script src="loader.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
 <style>
   @font-face {
     font-family: "Suisse Intl";
     src: url("fonts/SuisseIntl.woff2") format("woff2");
     font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Ballet";
+    src: url("fonts/Ballet.woff2") format("woff2");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -35,7 +43,7 @@
     .pd-page { padding: 0 !important; }
     .pd-desktop, .pd-desktop-top { display: none !important; }
     .pd-mobile { display: flex !important; }
-    .pd-foot { left: 24px !important; bottom: 16px !important; }
+    .pd-foot { display: none !important; }
   }
 </style>
 <script src="pixel-text.js"></script>
@@ -94,16 +102,16 @@
   </div>
 
   <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
-  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 96px; box-sizing: border-box;">
+  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box;">
 
     <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
       <a href="home.dc.html" style="display: inline-block; line-height: 0; font-style: normal;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a>
     </div>
 
-    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: 0.01em; margin-top: 12px;">TOMORROW X TOGETHER ‘FREEFALL’</div>
-    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35;">3D Still Images / Look Development</div>
+    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: -0.02em; margin-top: 12px; opacity: 0.85;">TOMORROW X TOGETHER ‘FREEFALL’</div>
+    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35; opacity: 0.85;">3D Still Images / Look Development</div>
 
-    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b;">
+    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b; opacity: 0.85;">
       <div>BigHit Entertainment</div>
       <div style="display: flex; flex-direction: column; gap: 2px;">
         <div>2023-07 / 2023-07</div>
@@ -117,8 +125,10 @@
       </div>
     </div>
 
-    <div style="margin-top: 26px; padding-right: 80px; text-wrap: pretty; font-size: 14px; line-height: 1.35;">Ahead of TOMORROW X TOGETHER’s comeback with the album ‘FREEFALL’, produced 3D concept images and teasing stills. Visual elements including the poster, package, and goods were rendered lifelike, focusing on intuitively conveying the album’s mood and message. Created in Cinema 4D and rendered with Redshift; responsible for the overall visuals, from main object layout and texture treatment to camera composition and lighting.</div>
-    <div style="margin-top: 40px; padding-right: 80px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px;">TOMORROW X TOGETHER의 앨범 ‘FREEFALL’ 컴백에 앞서, 3D 컨셉 이미지 및 티징 스틸을 제작하였다. 포스터, 패키지, 굿즈 구성물을 포함한 시각 요소들을 실제처럼 연출하여 앨범의 분위기와 메시지를 직관적으로 전달하는 데 중점을 두었다. Cinema 4D와 Redshift 렌더러를 사용하였으며, 메인 오브젝트의 레이아웃 및 질감 연출부터 카메라 구도, 라이팅 등 전반적인 비주얼 제작을 담당하였다.</div>
+    <div style="margin-top: 26px; text-wrap: pretty; font-size: 14px; line-height: 1.35; opacity: 0.85;">Ahead of TOMORROW X TOGETHER’s comeback with the album ‘FREEFALL’, produced 3D concept images and teasing stills. Visual elements including the poster, package, and goods were rendered lifelike, focusing on intuitively conveying the album’s mood and message. Created in Cinema 4D and rendered with Redshift; responsible for the overall visuals, from main object layout and texture treatment to camera composition and lighting.</div>
+    <div style="margin-top: 40px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px; opacity: 0.85;">TOMORROW X TOGETHER의 앨범 ‘FREEFALL’ 컴백에 앞서, 3D 컨셉 이미지 및 티징 스틸을 제작하였다. 포스터, 패키지, 굿즈 구성물을 포함한 시각 요소들을 실제처럼 연출하여 앨범의 분위기와 메시지를 직관적으로 전달하는 데 중점을 두었다. Cinema 4D와 Redshift 렌더러를 사용하였으며, 메인 오브젝트의 레이아웃 및 질감 연출부터 카메라 구도, 라이팅 등 전반적인 비주얼 제작을 담당하였다.</div>
+
+    <div style="margin-top: 64px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; opacity: 0.85;">© 2026 Hyunyoung Kim. All rights reserved.</div>
 
   </div><!-- /pd-mobile -->
 

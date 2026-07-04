@@ -12,16 +12,24 @@
 <helmet>
 <meta name="color-scheme" content="light only">
 <meta name="darkreader-lock" content="">
+<link rel="icon" type="image/webp" href="preview.webp">
 <script src="guard.js"></script>
 <script src="loader.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
 <style>
   @font-face {
     font-family: "Suisse Intl";
     src: url("fonts/SuisseIntl.woff2") format("woff2");
     font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Ballet";
+    src: url("fonts/Ballet.woff2") format("woff2");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -35,7 +43,7 @@
     .pd-page { padding: 0 !important; }
     .pd-desktop, .pd-desktop-top { display: none !important; }
     .pd-mobile { display: flex !important; }
-    .pd-foot { left: 24px !important; bottom: 16px !important; }
+    .pd-foot { display: none !important; }
   }
 </style>
 <script src="pixel-text.js"></script>
@@ -125,17 +133,17 @@
   </div>
 
   <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
-  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 96px; box-sizing: border-box;">
+  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box;">
 
     <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
       <a href="home.dc.html" style="display: inline-block; line-height: 0; font-style: normal;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a>
     </div>
 
-    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: 0.01em; margin-top: 12px;">Terrarium Series</div>
-    <div style="font-size: 15px; color: #11111180; margin-top: 4px; letter-spacing: -0.02em;">Petal Terrarium / Greenery Waterfall</div>
-    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35;">3D Media Art / 01 : 06 / Planning, Look Dev, Simulation</div>
+    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: -0.02em; margin-top: 12px; opacity: 0.85;">Terrarium Series</div>
+    <div style="font-size: 15px; color: #11111180; margin-top: 4px; letter-spacing: -0.02em; opacity: 0.85;">Petal Terrarium / Greenery Waterfall</div>
+    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35; opacity: 0.85;">3D Media Art / 01 : 06 / Planning, Look Dev, Simulation</div>
 
-    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b;">
+    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b; opacity: 0.85;">
       <div>d’strict Korea Inc. <br>for Media Art Platform LED.ART</div>
       <div style="display: flex; flex-direction: column; gap: 2px;">
         <div>2024-06 / 2024-12</div>
@@ -146,7 +154,7 @@
 
     <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 50px;">
 
-      <div style="letter-spacing: 0.01em; color: #11111199; font-size: 14px; margin-bottom: 2px;">Petal Terrarium</div>
+      <div style="letter-spacing: 0.01em; color: #11111199; font-size: 14px; margin-bottom: 2px; opacity: 0.85;">Petal Terrarium</div>
       <div style="width: 100%; padding: 37.089% 0 0 0; position: relative; background: transparent;">
         <iframe src="https://player.vimeo.com/video/1077150204?loop=1&amp;controls=1&amp;autopause=0&amp;playsinline=1&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" title="PETAL TERRARIUM"></iframe>
       </div>
@@ -165,15 +173,17 @@
         </div>
       </div>
 
-      <div style="letter-spacing: 0.01em; color: #11111199; font-size: 14px; margin-top: 24px; margin-bottom: 2px;">Greenery Waterfall</div>
+      <div style="letter-spacing: 0.01em; color: #11111199; font-size: 14px; margin-top: 24px; margin-bottom: 2px; opacity: 0.85;">Greenery Waterfall</div>
       <div style="width: 100%; padding: 33.220% 0 0 0; position: relative; background: transparent;">
         <iframe src="https://player.vimeo.com/video/1206205944?loop=1&amp;controls=1&amp;autopause=0&amp;playsinline=1&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" title="GREENERY WATERFALL"></iframe>
       </div>
 
     </div>
 
-    <div style="margin-top: 26px; padding-right: 80px; text-wrap: pretty; font-size: 14px; line-height: 1.35;">This work explores the expression of natural movement within a still environment, centered around petals drifting with the flow of the current. Vegetation-covered rock formations and a calm waterfall create a quiet atmosphere, while gently moving petals add subtle vitality to the space. The project was created in Cinema 4D and rendered with Redshift. Petal and leaf particle motion, along with the waterfall simulation, were developed using Insydium X-Particles. The work was featured on Insydium’s official Instagram account.</div>
-    <div style="margin-top: 40px; padding-right: 80px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px;">조수의 흐름에 따라 꿃잎이 유영하는 장면을 중심으로, 정적인 공간 안에서 자연스러운 움직임을 표현하였다. 식물로 장식된 암석 지형과 잔잔히 흐르는 폭포 속에서 부드럽게 움직이는 꿃잎들이 공간에 생기를 더한다. Cinema 4D와 Redshift렌더러를 사용하였으며, 꿃잎/나뭇잎 파티클의 움직임과 폭포의 액체 표현은 Insydium의 X-Particles를 통해 구현하였다. 본 콘텐츠는 Insydium 공식 인스타그램 계정에 소개되었다.</div>
+    <div style="margin-top: 26px; text-wrap: pretty; font-size: 14px; line-height: 1.35; opacity: 0.85;">This work explores the expression of natural movement within a still environment, centered around petals drifting with the flow of the current. Vegetation-covered rock formations and a calm waterfall create a quiet atmosphere, while gently moving petals add subtle vitality to the space. The project was created in Cinema 4D and rendered with Redshift. Petal and leaf particle motion, along with the waterfall simulation, were developed using Insydium X-Particles. The work was featured on Insydium’s official Instagram account.</div>
+    <div style="margin-top: 40px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px; opacity: 0.85;">조수의 흐름에 따라 꿃잎이 유영하는 장면을 중심으로, 정적인 공간 안에서 자연스러운 움직임을 표현하였다. 식물로 장식된 암석 지형과 잔잔히 흐르는 폭포 속에서 부드럽게 움직이는 꿃잎들이 공간에 생기를 더한다. Cinema 4D와 Redshift렌더러를 사용하였으며, 꿃잎/나뭇잎 파티클의 움직임과 폭포의 액체 표현은 Insydium의 X-Particles를 통해 구현하였다. 본 콘텐츠는 Insydium 공식 인스타그램 계정에 소개되었다.</div>
+
+    <div style="margin-top: 64px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; opacity: 0.85;">© 2026 Hyunyoung Kim. All rights reserved.</div>
 
   </div><!-- /pd-mobile -->
 

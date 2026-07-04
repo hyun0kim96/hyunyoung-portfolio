@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light only">
+<title>Hyunyoung Kim</title>
+<link rel="icon" type="image/webp" href="preview.webp">
+<link rel="apple-touch-icon" href="preview.webp">
+<meta property="og:title" content="Hyunyoung Kim">
+<meta property="og:type" content="website">
+<meta property="og:image" content="preview.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="preview.webp">
 <style>html,body{background:#ffffff;margin:0}</style>
 <script src="./support.js"></script>
 </head>
@@ -15,12 +23,19 @@
 <script src="guard.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
 <style>
   @font-face {
     font-family: "Suisse Intl";
     src: url("fonts/SuisseIntl.woff2") format("woff2");
     font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Ballet";
+    src: url("fonts/Ballet.woff2") format("woff2");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -51,7 +66,7 @@
     .home-footer { display: none !important; }
   }
   @keyframes scrollHintPulse { 0%, 100% { opacity: 0.14; } 50% { opacity: 0.5; } }
-  .m-scrollhint { display: flex; flex-direction: column; align-items: center; }
+  .m-scrollhint { display: flex; flex-direction: column; align-items: center; transition: opacity 0.6s ease; will-change: opacity; }
   .m-scrollhint .chev { display: block; margin-top: -3px; opacity: 0.14; animation: scrollHintPulse 2.6s ease-in-out infinite; }
   .m-scrollhint .chev:first-child { margin-top: 0; }
   .m-scrollhint .chev:nth-child(1) { animation-delay: 0s; }
@@ -79,7 +94,7 @@
     <!-- Column 1 — Name / Introduction / Contact -->
     <div style="display: flex; flex-direction: column; gap: 22px;">
       <div style="text-transform: uppercase; letter-spacing: 0.01em;"><a href="home.dc.html" style="display: inline-block; line-height: 0;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a></div>
-      <div style="color: #111;">Working across commercial moving image and media art for physical spaces, the practice creates visual experiences through 3D motion design, with a particular interest in simulation-based motion and dynamic visual effects. <br><br>Based in Seoul, Republic of Korea<img src="kr-flag.png" alt="🇰🇷" style="height: 0.907em; width: auto; vertical-align: -0.16em; display: inline-block; margin: 0 0.25em;">, focused on crafting vibrant graphics through the integration of motion, typography, graphic design, and AI generative technologies.</div>
+      <div style="color: #111;">Working across commercial moving image and media art for physical spaces, the practice creates visual experiences through 3D motion design, with a particular interest in simulation-based motion and dynamic visual effects. <br><br>Based in Seoul, Republic of Korea<img src="kr-flag.png" alt="🇰🇷" style="height: 0.907em; width: auto; vertical-align: -0.16em; display: inline-block; margin: 0 0.25em;">, focused on crafting vibrant graphics through the integration of motion, typography, graphic design, and generative technologies.</div>
       <div class="contact">
         <div><a class="link-arrow allow-select" href="mailto:hello.hyun0kim@gmail.com">hello.hyun0kim@gmail.com</a></div>
         <div><a class="link-arrow" href="https://www.instagram.com/hyun0kim/" target="_blank" rel="noopener noreferrer">@hyun0kim</a></div>
@@ -164,7 +179,7 @@
     <!-- M1 · Intro — fills the full screen -->
     <section class="m-section m-intro" style="min-height: 100dvh; display: flex; flex-direction: column; justify-content: space-between; padding: 10px 24px 34px; box-sizing: border-box;">
       <div style="display: flex; flex-direction: column; gap: 44px; max-width: 560px;">
-        <div style="color: #111; line-height: 1.28;">Working across commercial moving image and media art for physical spaces, the practice creates visual experiences through 3D motion design, with a particular interest in simulation-based motion and dynamic visual effects. <br><br>Based in Seoul, Republic of Korea<img src="kr-flag.png" alt="🇰🇷" style="height: 0.907em; width: auto; vertical-align: -0.16em; display: inline-block; margin: 0 0.25em;">, focused on crafting vibrant graphics through the integration of motion, typography, graphic design, and AI generative technologies.</div>
+        <div style="color: #111; line-height: 1.28;">Working across commercial moving image and media art for physical spaces, the practice creates visual experiences through 3D motion design, with a particular interest in simulation-based motion and dynamic visual effects. <br><br>Based in Seoul, Republic of Korea<img src="kr-flag.png" alt="🇰🇷" style="height: 0.907em; width: auto; vertical-align: -0.16em; display: inline-block; margin: 0 0.25em;">, focused on crafting vibrant graphics through the integration of motion, typography, graphic design, and generative technologies.</div>
         <div class="contact">
           <div><a class="link-arrow allow-select" href="mailto:hello.hyun0kim@gmail.com">hello.hyun0kim@gmail.com</a></div>
           <div><a class="link-arrow" href="https://www.instagram.com/hyun0kim/" target="_blank" rel="noopener noreferrer">@hyun0kim</a></div>
@@ -172,20 +187,19 @@
         </div>
       </div>
 
-      <!-- Scroll-down hint + copyright pinned to the bottom of the first section -->
-      <div style="position: relative; padding-bottom: 72px;">
+      <!-- Scroll-down hint at the bottom of the first section -->
+      <div style="position: relative; padding-bottom: 28px;">
         <div class="m-scrollhint" aria-hidden="true">
           <svg class="chev" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M2 2 L17 10.5 L32 2" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           <svg class="chev" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M2 2 L17 10.5 L32 2" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           <svg class="chev" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M2 2 L17 10.5 L32 2" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </div>
-        <div class="m-copyright" style="position: absolute; left: 0; bottom: 0;">© 2026 Hyunyoung Kim. All rights reserved.</div>
       </div>
 
     </section>
 
     <!-- M2 · Projects — thumbnails always visible -->
-    <section class="m-section" style="padding: 34px 24px 56px; box-sizing: border-box;">
+    <section class="m-section" style="padding: 34px 24px 39px; box-sizing: border-box;">
       <div style="text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 22px;">Projects</div>
       <div style="display: flex; flex-direction: column; gap: 14px;">
         <sc-for list="{{ mProjects }}" as="proj" hint-placeholder-count="8">
@@ -204,7 +218,7 @@
     </section>
 
     <!-- M3 · Exhibitions + Career/Education -->
-    <section class="m-section" style="padding: 34px 24px 96px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px;">
+    <section class="m-section" style="padding: 34px 24px 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px;">
       <div style="display: flex; flex-direction: column; gap: 20px;">
         <div style="text-transform: uppercase; letter-spacing: 0.01em;">Exhibitions</div>
         <div style="color: #111;">“YONGSAN DOPAMINE STATION”, Seoul, 2026 — “HANGANG PPFUL CULTURAL COMPLEX”, Seoul, 2025 — “GYEONGGI CREDIT GUARANTEE FOUNDATION”, Gyeonggi, 2025 — “RAEMIAN GALLERY”, Seoul, 2025 — “CENTERFIELD”, Seoul, 2025 — “THE HYUNDAI 3RD ANNIVERSARY EVENT”, Seoul, 2024 — “JIRISAN”, Gurye, 2022</div>
@@ -222,8 +236,8 @@
       <div style="display: flex; flex-direction: column; gap: 20px;">
         <div style="text-transform: uppercase; letter-spacing: 0.01em;">Education</div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <div>Hongik University, Seoul<br>BFA in Visual Communication Design (2017 – 2022)</div>
-          <div>Seoul Sejong High School, Seoul (2013 – 2016)</div>
+          <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div></div><div>Hongik University, Seoul<br>BFA in Visual Communication Design (2017 – 2022)</div></div>
+          <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div></div><div>Seoul Sejong High School, Seoul (2013 – 2016)</div></div>
         </div>
       </div>
 
@@ -282,32 +296,35 @@ class Component extends DCLogic {
   // jumps back to the intro. Everything below projects scrolls freely.
   setupMobileSnap() {
     const mq = window.matchMedia("(max-width: 760px)");
-    const HEADER = 48, DUR = 950;
-    const easeInOutQuart = (t) => (t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2);
-    let anim = null, snapping = false, touchStartY = null, lastWheel = 0;
+    const HEADER = 48;
+    let snapping = false, touchStartY = null, locked = false;
 
     const scrollEl = () => document.scrollingElement || document.documentElement;
+    const DUR = 1150;
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    let rafId = null;
     const projTop = () => {
       const secs = document.querySelectorAll(".mobile-view .m-section");
       const p = secs[1];
       if (!p) return null;
       return scrollEl().scrollTop + p.getBoundingClientRect().top - HEADER;
     };
-    const animateTo = (end) => {
+    const smoothTo = (end) => {
       const start = scrollEl().scrollTop;
       if (Math.abs(end - start) < 2) return;
-      const t0 = performance.now();
-      if (anim) cancelAnimationFrame(anim);
+      if (rafId) cancelAnimationFrame(rafId);
       snapping = true;
+      const t0 = performance.now();
       const step = (now) => {
         const p = Math.min(1, (now - t0) / DUR);
-        scrollEl().scrollTop = start + (end - start) * easeInOutQuart(p);
-        if (p < 1) anim = requestAnimationFrame(step);
-        else { snapping = false; anim = null; }
+        scrollEl().scrollTop = start + (end - start) * easeOutCubic(p);
+        if (p < 1) { rafId = requestAnimationFrame(step); }
+        else { snapping = false; rafId = null; }
       };
-      anim = requestAnimationFrame(step);
+      rafId = requestAnimationFrame(step);
     };
-    // Returns the snap target for a gesture, or null to allow free scrolling.
+
+    // Which snap target does the current position + direction call for? null = free.
     const decide = (dir, y, pt) => {
       const introZone = y < pt * 0.5;
       const projTopZone = y >= pt * 0.5 && y <= pt + 40;
@@ -317,34 +334,65 @@ class Component extends DCLogic {
     };
 
     const onWheel = (e) => {
-      if (!mq.matches || Math.abs(e.deltaY) < 4) return;
+      if (!mq.matches || snapping || Math.abs(e.deltaY) < 4) return;
       const pt = projTop();
       if (pt == null) return;
       const target = decide(e.deltaY > 0 ? 1 : -1, scrollEl().scrollTop, pt);
       if (target == null) return; // free scroll
       e.preventDefault();
-      const now = performance.now();
-      if (now - lastWheel < 120 || snapping) return;
-      lastWheel = now;
-      animateTo(target);
+      smoothTo(target);
     };
-    const onTouchStart = (e) => { touchStartY = e.touches[0].clientY; };
+
+    const onTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+      locked = false;
+    };
     const onTouchMove = (e) => {
-      if (!mq.matches || touchStartY == null) return;
+      if (!mq.matches || touchStartY == null || snapping) return;
       const pt = projTop();
       if (pt == null) return;
       const dy = touchStartY - e.touches[0].clientY;
-      if (Math.abs(dy) < 20) return;
-      const target = decide(dy > 0 ? 1 : -1, scrollEl().scrollTop, pt);
-      if (target == null) { touchStartY = null; return; } // let native scroll
-      e.preventDefault();
+      // Only intercept once the swipe is a clear boundary crossing; then lock the
+      // page so native scroll doesn't drag it raggedly before the snap.
+      if (!locked) {
+        if (Math.abs(dy) < 14) return;
+        const target = decide(dy > 0 ? 1 : -1, scrollEl().scrollTop, pt);
+        if (target == null) { touchStartY = null; return; } // free scroll — never intercept
+        locked = true;
+      }
+      e.preventDefault(); // hold position steady during the qualifying swipe
+    };
+    const onTouchEnd = (e) => {
+      if (!mq.matches || touchStartY == null) { touchStartY = null; return; }
+      if (locked) {
+        const endY = (e.changedTouches && e.changedTouches[0].clientY) || touchStartY;
+        const dy = touchStartY - endY;
+        const pt = projTop();
+        if (pt != null) {
+          const target = decide(dy > 0 ? 1 : -1, scrollEl().scrollTop, pt);
+          if (target != null) smoothTo(target);
+        }
+      }
       touchStartY = null;
-      if (!snapping) animateTo(target);
+      locked = false;
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+
+    // Fade the scroll-down hint out as the intro scrolls away; restore on the way back.
+    const hint = document.querySelector(".mobile-view .m-scrollhint");
+    const updateHint = () => {
+      if (!hint) return;
+      const pt = projTop();
+      if (pt == null) return;
+      const o = Math.max(0, Math.min(1, 1 - scrollEl().scrollTop / (pt * 0.45)));
+      hint.style.opacity = String(o);
+    };
+    window.addEventListener("scroll", updateHint, { passive: true });
+    updateHint();
   }
   _setupMobileSnap_disabled() {
     const mq = window.matchMedia("(max-width: 760px)");

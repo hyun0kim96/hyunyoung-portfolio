@@ -12,16 +12,24 @@
 <helmet>
 <meta name="color-scheme" content="light only">
 <meta name="darkreader-lock" content="">
+<link rel="icon" type="image/webp" href="preview.webp">
 <script src="guard.js"></script>
 <script src="loader.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
 <style>
   @font-face {
     font-family: "Suisse Intl";
     src: url("fonts/SuisseIntl.woff2") format("woff2");
     font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Ballet";
+    src: url("fonts/Ballet.woff2") format("woff2");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -35,7 +43,7 @@
     .pd-page { padding: 0 !important; }
     .pd-desktop, .pd-desktop-top { display: none !important; }
     .pd-mobile { display: flex !important; }
-    .pd-foot { left: 24px !important; bottom: 16px !important; }
+    .pd-foot { display: none !important; }
   }
 </style>
 <script src="pixel-text.js"></script>
@@ -111,7 +119,7 @@
   </div>
 
   <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
-  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 96px; box-sizing: border-box;">
+  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box;">
 
     <!-- Sticky home-button header -->
     <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
@@ -119,11 +127,11 @@
     </div>
 
     <!-- Title + subtitle -->
-    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: 0.01em; text-transform: capitalize; margin-top: 12px;">Hollow</div>
-    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35;">3D Media Art / 01 : 00 / Planning, Look Dev, Simulation</div>
+    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: -0.02em; text-transform: capitalize; margin-top: 12px; opacity: 0.85;">Hollow</div>
+    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35; opacity: 0.85;">3D Media Art / 01 : 00 / Planning, Look Dev, Simulation</div>
 
     <!-- Credits (indented, slash-separated, no line breaks) -->
-    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b;">
+    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b; opacity: 0.85;">
       <div>d’strict Korea Inc. <br>for Media Art Platform LED.ART</div>
       <div style="display: flex; flex-direction: column; gap: 2px;">
         <div>2025-01 / 2025-02</div>
@@ -156,8 +164,10 @@
     </div>
 
     <!-- Description -->
-    <div style="margin-top: 26px; padding-right: 80px; text-wrap: pretty; font-size: 14px; line-height: 1.35;">Through the movement of objects flowing into an empty structure, the work expresses the sensation of being drawn away from familiar reality toward new possibilities. Based on repeating patterns and differences in materiality, objects with distinct properties and trajectories form organic relationships within a single space. Created in Cinema 4D and rendered with Redshift; responsible for the overall physical simulation as well as motion and hair textures. The content is currently on view on the large media wall of Baskin Robbins at SPC’s Dogok headquarters.</div>
-    <div style="margin-top: 40px; padding-right: 80px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px;">비어 있는 구조 속으로 흘러가는 오브젝트의 움직임을 통해, 익숙한 현실에서 벗어나 새로운 가능성으로 이끌리는 감각을 표현하였다. 반복되는 패턴과 물성의 차이를 기반으로, 서로 다른 속성과 궤적을 지닌 오브젝트들이 하나의 공간 안에서 유기적으로 관계를 맺는 내용을 미디어아트로 풀어냈다. Cinema 4D와 Redshift 렌더러를 사용하였으며, 물리 시뮬레이션 전반과 모션 및 헤어 질감을 맡아 제작하였다. 본 콘텐츠는 SPC 도곡 사옥의 베스킨라빈스 대형 미디어월에 상영중이다.</div>
+    <div style="margin-top: 26px; text-wrap: pretty; font-size: 14px; line-height: 1.35; opacity: 0.85;">Through the movement of objects flowing into an empty structure, the work expresses the sensation of being drawn away from familiar reality toward new possibilities. Based on repeating patterns and differences in materiality, objects with distinct properties and trajectories form organic relationships within a single space. Created in Cinema 4D and rendered with Redshift; responsible for the overall physical simulation as well as motion and hair textures. The content is currently on view on the large media wall of Baskin Robbins at SPC’s Dogok headquarters.</div>
+    <div style="margin-top: 40px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px; opacity: 0.85;">비어 있는 구조 속으로 흘러가는 오브젝트의 움직임을 통해, 익숙한 현실에서 벗어나 새로운 가능성으로 이끌리는 감각을 표현하였다. 반복되는 패턴과 물성의 차이를 기반으로, 서로 다른 속성과 궤적을 지닌 오브젝트들이 하나의 공간 안에서 유기적으로 관계를 맺는 내용을 미디어아트로 풀어냈다. Cinema 4D와 Redshift 렌더러를 사용하였으며, 물리 시뮬레이션 전반과 모션 및 헤어 질감을 맡아 제작하였다. 본 콘텐츠는 SPC 도곡 사옥의 베스킨라빈스 대형 미디어월에 상영중이다.</div>
+
+    <div style="margin-top: 64px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; opacity: 0.85;">© 2026 Hyunyoung Kim. All rights reserved.</div>
 
   </div><!-- /pd-mobile -->
 

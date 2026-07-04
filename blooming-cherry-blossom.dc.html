@@ -12,16 +12,24 @@
 <helmet>
 <meta name="color-scheme" content="light only">
 <meta name="darkreader-lock" content="">
+<link rel="icon" type="image/webp" href="preview.webp">
 <script src="guard.js"></script>
 <script src="loader.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
 <style>
   @font-face {
     font-family: "Suisse Intl";
     src: url("fonts/SuisseIntl.woff2") format("woff2");
     font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Ballet";
+    src: url("fonts/Ballet.woff2") format("woff2");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
@@ -35,7 +43,7 @@
     .pd-page { padding: 0 !important; }
     .pd-desktop, .pd-desktop-top { display: none !important; }
     .pd-mobile { display: flex !important; }
-    .pd-foot { left: 24px !important; bottom: 16px !important; }
+    .pd-foot { display: none !important; }
   }
 </style>
 <script src="pixel-text.js"></script>
@@ -79,8 +87,8 @@
       </div>
 
       <!-- English description -->
-      <div style="margin-top: 14px; text-wrap: pretty; text-align: left; font-size: 14px">Through the harmony of a horizontally reclining cherry blossom tree and a distinctive composition, the atmosphere of spring is heightened while creating a modern sense of space. Midjourney prompts were used to plan the layout and initial concept. Created in Cinema 4D and rendered with Redshift; detailed flower modeling and animation used Insydium’s Taiao plugin. Solely produced the overall look development, including trunk modeling and texturing, as well as the petal particle simulation. The work was screened on The Hyundai Seoul media wall at the store’s 3rd anniversary event in early 2024.</div>
-      <div style="margin-top: 5px; text-wrap: pretty; font-size: 13.8px">가로로 길게 누운 벚꽃나무와 독특한 구성의 조화를 통해, 봄의 분위기를 강화하면서 모던한 공간감을 연출하였다. Midjourney 프롬프트를 활용하여 레이아웃 및 초기 컨셉을 기획하였다. Cinema 4D와 Redshift 렌더러를 사용하였으며, 꽃의 세부 모델링 및 애니메이션은 Insydium의 Taiao 플러그인을 이용하였다. 나무 줄기의 모델링 및 텍스처링을 포함한 전체적인 룩 디벨롭과 꽃잎 파티클 시뮬레이션을 단독 제작 진행하였다. 본 작품은 2024년 초, 더현대서울 3주년 기념행사에서 더현대서울 미디어월에 상영되었다.</div>
+      <div style="margin-top: 14px; text-wrap: pretty; text-align: left; font-size: 14px">Centered around a horizontally extended cherry blossom tree, this work creates a contemporary spatial composition inspired by the atmosphere of spring. The concept was developed through AI-assisted ideation and was presented on The Hyundai Seoul media wall during its 3rd Anniversary event in 2024.</div>
+      <div style="margin-top: 5px; text-wrap: pretty; font-size: 13.8px">가로로 길게 붗은 벚꽃나무를 중심으로 봄의 분위기와 현대적인 공간감을 표현하였다. AI 기반의 초기 컨셉 리서치를 바탕으로 레이아웃을 발전시켰으며, 2024년 더현대서울 3주년 기념행사에서 더현대서울 미디어월에 상영되었다.</div>
 
     </div><div style="display: flex; flex-direction: column; gap: 12px;">
 
@@ -105,16 +113,16 @@
   </div>
 
   <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
-  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 96px; box-sizing: border-box;">
+  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box;">
 
     <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
       <a href="home.dc.html" style="display: inline-block; line-height: 0; font-style: normal;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a>
     </div>
 
-    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: 0.01em; margin-top: 12px;">Blooming : Cherry Blossom</div>
-    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35;">3D Media Art / 01 : 06 / Planning, Look Dev, Simulation</div>
+    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: -0.02em; margin-top: 12px; opacity: 0.85;">Blooming : Cherry Blossom</div>
+    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35; opacity: 0.85;">3D Media Art / 01 : 06 / Planning, Look Dev, Simulation</div>
 
-    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b;">
+    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b; opacity: 0.85;">
       <div>d’strict Korea Inc. <br>for Media Art Platform LED.ART</div>
       <div style="display: flex; flex-direction: column; gap: 2px;">
         <div>2023-06 / 2023-11</div>
@@ -147,8 +155,10 @@
       </div>
     </div>
 
-    <div style="margin-top: 26px; padding-right: 80px; text-wrap: pretty; font-size: 14px; line-height: 1.35;">Through the harmony of a horizontally reclining cherry blossom tree and a distinctive composition, the atmosphere of spring is heightened while creating a modern sense of space. Midjourney prompts were used to plan the layout and initial concept. Created in Cinema 4D and rendered with Redshift; detailed flower modeling and animation used Insydium’s Taiao plugin. Solely produced the overall look development, including trunk modeling and texturing, as well as the petal particle simulation. The work was screened on The Hyundai Seoul media wall at the store’s 3rd anniversary event in early 2024.</div>
-    <div style="margin-top: 40px; padding-right: 80px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px;">가로로 길게 누운 벚꽃나무와 독특한 구성의 조화를 통해, 봄의 분위기를 강화하면서 모던한 공간감을 연출하였다. Midjourney 프롬프트를 활용하여 레이아웃 및 초기 컨셉을 기획하였다. Cinema 4D와 Redshift 렌더러를 사용하였으며, 꿃의 세부 모델링 및 애니메이션은 Insydium의 Taiao 플러그인을 이용하였다. 나무 줄기의 모델링 및 텍스처링을 포함한 전체적인 룩 디벨롭과 꿃잎 파티클 시뮬레이션을 단독 제작 진행하였다. 본 작품은 2024년 초, 더현대서울 3주년 기념행사에서 더현대서울 미디어월에 상영되었다.</div>
+    <div style="margin-top: 26px; text-wrap: pretty; font-size: 14px; line-height: 1.35; opacity: 0.85;">Centered around a horizontally extended cherry blossom tree, this work creates a contemporary spatial composition inspired by the atmosphere of spring. The concept was developed through AI-assisted ideation and was presented on The Hyundai Seoul media wall during its 3rd Anniversary event in 2024.</div>
+    <div style="margin-top: 40px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px; opacity: 0.85;">가로로 길게 뻗은 벚꽃나무를 중심으로 봄의 분위기와 현대적인 공간감을 표현하였다. AI 기반의 초기 컨셉 리서치를 바탕으로 레이아웃을 발전시켰으며, 2024년 더현대서울 3주년 기념행사에서 더현대서울 미디어월에 상영되었다.</div>
+
+    <div style="margin-top: 64px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; opacity: 0.85;">© 2026 Hyunyoung Kim. All rights reserved.</div>
 
   </div><!-- /pd-mobile -->
 

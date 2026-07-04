@@ -11,6 +11,11 @@
     var weight = cv.getAttribute("data-weight") || "400";
     var tracking = cv.getAttribute("data-tracking") || "0.15px";
     var color = cv.getAttribute("data-color") || "#111111";
+    // When a dark-mode tool (e.g. Safari Noir) forces the page dark, canvas pixels
+    // can't be inverted — so draw the label in a light color instead of staying black.
+    var darkColor = cv.getAttribute("data-dark-color") || "#f2f2f2";
+    var dm = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+    function activeColor() { return (dm && dm.matches) ? darkColor : color; }
     var maxBlock = parseFloat(cv.getAttribute("data-max")) || 5; // px (2x of the old 2.5)
     var altFont = cv.getAttribute("data-alt-font") || "";        // pixelated glyphs use this
     var baseFont = cv.getAttribute("data-font") || "Suisse Intl"; // crisp glyphs use this
@@ -35,10 +40,10 @@
         ctx.font = weight + " " + fontPx + 'px "' + baseFont + '", "Helvetica Neue", Arial, sans-serif';
         try { ctx.letterSpacing = tracking; } catch (e) {}
         ctx.textBaseline = "middle";
-        ctx.fillStyle = color;
+        ctx.fillStyle = activeColor();
         ctx.fillText(text, 0, hCss / 2);
         if (fauxBold > 0) {
-          ctx.strokeStyle = color;
+          ctx.strokeStyle = activeColor();
           ctx.lineWidth = fontPx * fauxBold;
           ctx.lineJoin = "round";
           ctx.strokeText(text, 0, hCss / 2);
@@ -98,11 +103,11 @@
       bctx.font = font;
       try { bctx.letterSpacing = tracking; } catch (e) {}
       bctx.textBaseline = "middle";
-      bctx.fillStyle = color;
+      bctx.fillStyle = activeColor();
       bctx.fillText(text, 0, cssH() / 2);
       // faux-bold: no bold font file, so thicken with a same-color stroke
       if (fauxBold > 0) {
-        bctx.strokeStyle = color;
+        bctx.strokeStyle = activeColor();
         bctx.lineJoin = "round";
         bctx.lineWidth = fontPx * fauxBold;
         bctx.strokeText(text, 0, cssH() / 2);
@@ -127,7 +132,7 @@
       actx.clearRect(0, 0, cssW(), cssH());
       actx.font = altFontStr;
       actx.textBaseline = "middle";
-      actx.fillStyle = color;
+      actx.fillStyle = activeColor();
       segs.forEach(function (sg) {
         var s = text.slice(sg.s, sg.e);
         var slotW = sg.x1 - sg.x0;
@@ -137,6 +142,17 @@
     }
 
     buildBuffer();
+
+    // Rebuild in the appropriate color when the OS/extension dark-mode state flips.
+    if (dm) {
+      var onScheme = function () {
+        cv.__fallbackDrawn = false;
+        if (cv.__pixelInit) buildBuffer();
+        else drawFallback();
+      };
+      if (dm.addEventListener) dm.addEventListener("change", onScheme);
+      else if (dm.addListener) dm.addListener(onScheme);
+    }
 
     // per-segment glitch state
     var now = performance.now();
