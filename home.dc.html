@@ -202,7 +202,7 @@
 
     <!-- M2 · Projects — thumbnails always visible -->
     <section class="m-section" style="padding: 34px 24px 39px; box-sizing: border-box;">
-      <div style="text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 22px;">Projects</div>
+      <div style="text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 7px; -webkit-text-stroke: 0.35px currentColor;">Projects</div>
       <div style="display: flex; flex-direction: column; gap: 14px;">
         <sc-for list="{{ mProjects }}" as="proj" hint-placeholder-count="8">
           <div onClick="{{ proj.onClick }}" style="cursor: {{ proj.cursor }}; display: flex; flex-direction: column; gap: 6px;">
@@ -395,6 +395,16 @@ class Component extends DCLogic {
     };
     window.addEventListener("scroll", updateHint, { passive: true });
     updateHint();
+
+    // Tap the scroll-down hint to jump straight to the Projects section.
+    if (hint) {
+      hint.style.cursor = "pointer";
+      hint.style.pointerEvents = "auto";
+      hint.addEventListener("click", () => {
+        const pt = projTop();
+        if (pt != null) smoothTo(pt);
+      });
+    }
   }
   _setupMobileSnap_disabled() {
     const mq = window.matchMedia("(max-width: 760px)");
@@ -658,7 +668,7 @@ class Component extends DCLogic {
       { title: "d\u2019Alba Web Commercial Video (2025)", tag: "[CM]", href: "dalba-web-commercial-video.dc.html", zoom: 1.05, thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d3b847252011541.6a47b3bc164d2.jpg" },
       { title: "Hollow (2025)", tag: "[MA]", href: "hollow.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4ea8a4252011541.6a47d49163452.jpg" },
       { title: "NCT TEN \u2018STUNNER\u2019 Track Poster (2025)", tag: "[CM]", href: "nct-ten-stunner-track-poster.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/7d54fa252011541.6a47d49162e3f.jpg" },
-      { title: "Bloomy Sanctuary (2024)", tag: "[MA]", href: "bloomy-sanctuary.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/5fdaa1252011541.6a453532d3945.jpg" },
+      { title: "Bloomy Sanctuary (2024)", tag: "[MA]", href: "bloomy-sanctuary.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/7fb064252011541.6a4915006b4ed.png" },
       { title: "FLOW (SMAF 2024) (2024)", tag: "[MA]", href: "flow-smaf-2024.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/fae2e1252011541.6a47e6ae60772.jpg" },
       { title: "Blooming : Cherry Blossom (2023)", tag: "[MA]", href: "blooming-cherry-blossom.dc.html", align: "left", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/47b977252011541.6a45480c0fc23.jpg" },
       { title: "Dreamwalk (2022)", tag: "[PW]", href: "dreamwalk.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/62e0da252011541.6a454a278dd8b.jpg" },
