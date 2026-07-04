@@ -21,6 +21,8 @@
 <meta name="color-scheme" content="light only">
 <meta name="darkreader-lock" content="">
 <script src="guard.js"></script>
+<link rel="preload" href="fonts/Ballet.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="fonts/SuisseIntl.woff2" as="font" type="font/woff2" crossorigin="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
@@ -153,13 +155,13 @@
       <div style="text-transform: uppercase; letter-spacing: 0.01em;"><div>CAREER</div></div>
       <div style="display: flex; flex-direction: column; gap: 6px;">
         <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px"><div style="color: #999;">/</div><div>Nerdy Artist Union<br>Motion Graphics Designer (2025 – Present)</div></div>
-        <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #999;">/</div><div>d’strict Korea Inc., Media Art Team <br>Media Art Designer (2022 – 2025)</div></div>
+        <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #999;">/</div><div>d’strict Korea Inc., Media Art Team <br>Media Art Designer (2023 – 2025)</div></div>
         <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #999;">/</div><div>MUSINSA Co., Ltd., Content Design Team<br><span style="letter-spacing: -0.225px;">Intern Graphic Designer</span>&nbsp;(2019)</div></div>
       </div>
 
       <div style="text-transform: uppercase; letter-spacing: 0.01em; margin-top: 32px">Education</div>
       <div style="display: flex; flex-direction: column; gap: 6px;">
-        <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #99999900"></div><div>Hongik University, Seoul<br>BFA in Visual Communication Design (2017 – 2022)</div></div>
+        <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #99999900"></div><div>Hongik University, Seoul<br>BFA in Visual Communication Design (2017 – 2023)</div></div>
         <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #99999900"></div><div>Seoul Sejong High School, Seoul (2013 – 2016)</div></div>
       </div>
     </div>
@@ -228,7 +230,7 @@
         <div style="text-transform: uppercase; letter-spacing: 0.01em;">Career</div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
           <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div style="color: #999;">/</div><div>Nerdy Artist Union<br>Motion Graphics Designer (2025 – Present)</div></div>
-          <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div style="color: #999;">/</div><div>d’strict Korea, Media Art Team <br>Media Art Designer (2022 – 2025)</div></div>
+          <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div style="color: #999;">/</div><div>d’strict Korea, Media Art Team <br>Media Art Designer (2023 – 2025)</div></div>
           <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div style="color: #999;">/</div><div>MUSINSA Inc., Content Design Team<br>Intern Graphic Designer (2019)</div></div>
         </div>
       </div>
@@ -236,7 +238,7 @@
       <div style="display: flex; flex-direction: column; gap: 20px;">
         <div style="text-transform: uppercase; letter-spacing: 0.01em;">Education</div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div></div><div>Hongik University, Seoul<br>BFA in Visual Communication Design (2017 – 2022)</div></div>
+          <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div></div><div>Hongik University, Seoul<br>BFA in Visual Communication Design (2017 – 2023)</div></div>
           <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div></div><div>Seoul Sejong High School, Seoul (2013 – 2016)</div></div>
         </div>
       </div>
@@ -658,11 +660,11 @@ class Component extends DCLogic {
       { title: "NCT TEN \u2018STUNNER\u2019 Track Poster (2025)", tag: "[CM]", href: "nct-ten-stunner-track-poster.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/7d54fa252011541.6a47d49162e3f.jpg" },
       { title: "Bloomy Sanctuary (2024)", tag: "[MA]", href: "bloomy-sanctuary.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/5fdaa1252011541.6a453532d3945.jpg" },
       { title: "FLOW (SMAF 2024) (2024)", tag: "[MA]", href: "flow-smaf-2024.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/fae2e1252011541.6a47e6ae60772.jpg" },
-      { title: "Blooming : Cherry Blossom (2022)", tag: "[MA]", href: "blooming-cherry-blossom.dc.html", align: "left", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/47b977252011541.6a45480c0fc23.jpg" },
-      { title: "Dreamwalk (2021)", tag: "[PW]", href: "dreamwalk.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/62e0da252011541.6a454a278dd8b.jpg" },
+      { title: "Blooming : Cherry Blossom (2023)", tag: "[MA]", href: "blooming-cherry-blossom.dc.html", align: "left", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/47b977252011541.6a45480c0fc23.jpg" },
+      { title: "Dreamwalk (2022)", tag: "[PW]", href: "dreamwalk.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/62e0da252011541.6a454a278dd8b.jpg" },
       { title: "Terrarium Series (2024)", tag: "[MA]", href: "petal-terrarium.dc.html" },
       { title: "The 32nd Seoul Music Awards (2022)", tag: "[CM]", href: "the-32nd-seoul-music-awards.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8b8105252011541.6a454a278d3ec.jpg" },
-      { title: "TOMORROW X TOGETHER \u2018FREEFALL\u2019 (2022)", tag: "[CM]", href: "tomorrow-x-together-freefall.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/6e1f2b252011541.6a47e80a1c0b9.jpg" },
+      { title: "TOMORROW X TOGETHER \u2018FREEFALL\u2019 (2023)", tag: "[CM]", href: "tomorrow-x-together-freefall.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/6e1f2b252011541.6a47e80a1c0b9.jpg" },
     ];
   }
 

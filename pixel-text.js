@@ -15,13 +15,32 @@
     // can't be inverted — so draw the label in a light color instead of staying black.
     var darkColor = cv.getAttribute("data-dark-color") || "#f2f2f2";
     var dm = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
-    function activeColor() { return (dm && dm.matches) ? darkColor : color; }
+    // Decide by the ACTUAL background painted behind the canvas, not the OS
+    // preference: this page is `color-scheme: light only`, so a Mac/iOS in dark
+    // mode still renders it white — keying off prefers-color-scheme would draw
+    // near-white text on white (looks gray). Walking the ancestors also lets a
+    // dark-mode tool (Safari Noir) that injects a dark background flip us to light.
+    function pageIsDark() {
+      var el = cv;
+      while (el) {
+        var bg = "";
+        try { bg = getComputedStyle(el).backgroundColor; } catch (e) {}
+        var m = bg && bg.match(/(\d+(?:\.\d+)?)/g);
+        if (m && m.length >= 3 && (m.length < 4 || parseFloat(m[3]) > 0.2)) {
+          var lum = 0.299 * +m[0] + 0.587 * +m[1] + 0.114 * +m[2];
+          return lum < 128;
+        }
+        el = el.parentElement;
+      }
+      return false; // nothing opaque found → treat as light
+    }
+    function activeColor() { return pageIsDark() ? darkColor : color; }
     var maxBlock = parseFloat(cv.getAttribute("data-max")) || 5; // px (2x of the old 2.5)
     var altFont = cv.getAttribute("data-alt-font") || "";        // pixelated glyphs use this
     var baseFont = cv.getAttribute("data-font") || "Suisse Intl"; // crisp glyphs use this
     var fauxBold = parseFloat(cv.getAttribute("data-faux-bold")) || 0; // stroke width as fraction of fontPx
     var font = weight + " " + fontPx + 'px "' + baseFont + '", sans-serif';
-    var altFontStr = altFont ? (fontPx + 'px "' + altFont + '"') : font;
+    var altFontStr = altFont ? (fontPx + 'px "' + altFont + '", "Snell Roundhand", "Apple Chancery", cursive') : font;
 
     function baseReady() {
       return !(document.fonts && document.fonts.check) || document.fonts.check(fontPx + 'px "' + baseFont + '"');
@@ -59,7 +78,11 @@
     if (altFont && document.fonts && document.fonts.check && !document.fonts.check(fontPx + 'px "' + altFont + '"')) {
       if (!cv.__fallbackDrawn) { cv.__fallbackDrawn = true; drawFallback(); }
       if (document.fonts.load) document.fonts.load(fontPx + 'px "' + altFont + '"');
-      return;
+      // Don't block forever: if the glitch font is slow/unavailable (flaky on
+      // mobile), proceed after a grace period and let the cursive fallback in
+      // altFontStr stand in — the pixelate effect still runs in a similar face.
+      if (!cv.__altWaitStart) cv.__altWaitStart = performance.now();
+      if (performance.now() - cv.__altWaitStart < 2500) return;
     }
     cv.__pixelInit = true;
 
