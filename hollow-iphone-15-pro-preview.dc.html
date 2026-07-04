@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  html, body { margin: 0 !important; padding: 0 !important; background: #e9e9ec !important; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 48px 0; box-sizing: border-box; background: #e9e9ec; font-family: -apple-system, system-ui, sans-serif;">
+
+  <div style="font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #8a8a90;">iPhone 15 Pro — 393 × 852</div>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ dw }}" height="{{ dh }}" hint-size="393px,852px">
+    <div style="width: 100%; height: 100%; padding-top: 54px; box-sizing: border-box; background: #ffffff;">
+      <iframe src="hollow.dc.html" title="Hollow — mobile" style="width: 100%; height: 100%; border: 0; display: block; background: #ffffff;"></iframe>
+    </div>
+  </x-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { dw: 393, dh: 852 };
+  }
+}
+</script>
+</body>
+</html>

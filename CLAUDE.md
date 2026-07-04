@@ -8,7 +8,8 @@ For every Vimeo hero video, the container's `padding-top` % MUST equal the video
 - Embed params: `?autoplay=1&loop=1&muted=1&controls=0&background=1&autopause=0`.
 
 ## Home / project list
-- Home file: `HOME.dc.html`. All home-button links point here.
+- Home file: `home.dc.html` (root `index.html` redirects to it for Vercel). All home-button links point to `home.dc.html`.
+- All page filenames are lowercase-hyphen (e.g. `blooming-cherry-blossom.dc.html`) for clean hosting URLs.
 - Projects auto-sort by year (newest first; same year → alphabetical); numbers auto-assigned. Edit `projectList()` — order there doesn't matter; last 4-digit number in the title is the year.
 - Per-project thumbnail via `thumb`; optional `zoom` (default 1.25); optional `gif` plays (fades in) after the pixelate settles.
 - Point color removed from hover (text stays #111/#999).

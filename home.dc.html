@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<style>html,body{background:#ffffff;margin:0}</style>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="color-scheme" content="light only">
+<meta name="darkreader-lock" content="">
+<script src="guard.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: "Suisse Intl";
+    src: url("fonts/SuisseIntl.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root { color-scheme: light only; }
+  html, body { margin: 0 !important; padding: 0 !important; background: #ffffff !important; color: #111111; }
+  * { box-sizing: border-box; }
+  ::selection { background: transparent; color: #b4d100; }
+  a { color: inherit; text-decoration: none; }
+  a.link-arrow { position: relative; transition: color 0.2s ease; }
+  a.link-arrow::before { content: "\2197"; position: absolute; left: -1.15em; top: 0; opacity: 0; transition: opacity 0.25s ease; }
+  a.link-arrow:hover::before { opacity: 1; }
+  a.link-arrow:hover { color: #b4d100; -webkit-text-stroke: 0.06px #b4d100; }
+  .contact { display: flex; flex-direction: column; gap: 2px; }
+  .allow-select { user-select: text; -webkit-user-select: text; -webkit-touch-callout: default; }
+
+  .mobile-view { display: none; }
+
+  /* ---------- Mobile (dedicated design) ---------- */
+  @media (max-width: 760px) {
+    html { scroll-padding-top: 48px; scroll-behavior: auto; }
+    body { scroll-behavior: auto; }
+    .home-page { padding: 0 !important; }
+    .layout-row { display: none !important; }
+    .home-footer { left: 20px !important; bottom: 18px !important; }
+    .mobile-view { display: flex !important; }
+    .m-topbar { position: sticky; top: 0; z-index: 60; }
+    .m-intro { min-height: calc(100dvh - 48px) !important; }
+    .home-footer { display: none !important; }
+  }
+  @keyframes scrollHintPulse { 0%, 100% { opacity: 0.14; } 50% { opacity: 0.5; } }
+  .m-scrollhint { display: flex; flex-direction: column; align-items: center; }
+  .m-scrollhint .chev { display: block; margin-top: -3px; opacity: 0.14; animation: scrollHintPulse 2.6s ease-in-out infinite; }
+  .m-scrollhint .chev:first-child { margin-top: 0; }
+  .m-scrollhint .chev:nth-child(1) { animation-delay: 0s; }
+  .m-scrollhint .chev:nth-child(2) { animation-delay: 0.28s; }
+  .m-scrollhint .chev:nth-child(3) { animation-delay: 0.56s; }
+  .m-copyright { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; }
+</style>
+<script src="pixel-text.js"></script>
+</helmet>
+
+<div class="home-page" style="font-family: 'Suisse Intl', sans-serif; background: #ffffff; color: #111111; min-height: 100vh; width: 100%; font-size: 15px; line-height: 1.45; letter-spacing: -0.015em; -webkit-font-smoothing: antialiased; padding: 48px 48px 48px; display: flex; flex-direction: column;">
+
+  <!-- Intro loader — solid white screen with a 0% → 100% count-up, then fades out -->
+  <div ref="{{ loaderRef }}" style="position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; pointer-events: none; background: #ffffff;">
+    <div style="font-family: 'Suisse Intl', sans-serif; font-size: 15px; letter-spacing: 0.01em; color: #111111; text-transform: uppercase; -webkit-font-smoothing: antialiased;"><span ref="{{ pctRef }}">0</span>%</div>
+  </div>
+
+  <div class="pixel-wrap" ref="{{ pixWrapRef }}" style="width: 100%;">
+
+  <div class="layout-row" style="display: flex; align-items: flex-start; gap: 40px;">
+
+    <!-- LEFT REGION — Name/Intro/Contact + Projects (stays at top) -->
+    <div class="left-region" style="flex: 1 1 0; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+
+    <!-- Column 1 — Name / Introduction / Contact -->
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="text-transform: uppercase; letter-spacing: 0.01em;"><a href="home.dc.html" style="display: inline-block; line-height: 0;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a></div>
+      <div style="color: #111;">Working across commercial moving image and media art for physical spaces, the practice creates visual experiences through 3D motion design, with a particular interest in simulation-based motion and dynamic visual effects. <br><br>Based in Seoul, Republic of Korea<img src="kr-flag.png" alt="🇰🇷" style="height: 0.907em; width: auto; vertical-align: -0.16em; display: inline-block; margin: 0 0.25em;">, focused on crafting vibrant graphics through the integration of motion, typography, graphic design, and AI generative technologies.</div>
+      <div class="contact">
+        <div><a class="link-arrow allow-select" href="mailto:hello.hyun0kim@gmail.com">hello.hyun0kim@gmail.com</a></div>
+        <div><a class="link-arrow" href="https://www.instagram.com/hyun0kim/" target="_blank" rel="noopener noreferrer">@hyun0kim</a></div>
+        <div style="margin-top: 22px;"><a class="link-arrow" href="https://www.behance.net/hyun0kim" target="_blank" rel="noopener noreferrer">be.net/hyun0kim</a></div>
+      </div>
+    </div>
+
+    <!-- Column 2 — Projects -->
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="text-transform: uppercase; letter-spacing: 0.01em;">Projects</div>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ projects }}" as="item" hint-placeholder-count="6">
+          <div onMouseEnter="{{ item.onEnter }}" onMouseLeave="{{ item.onLeave }}" onClick="{{ item.onClick }}" style="display: grid; grid-template-columns: 28px 1fr auto; column-gap: 12px; cursor: {{ item.cursor }}; transition: opacity 0.45s ease; opacity: {{ item.rowOpacity }}; margin-bottom: {{ item.rowMargin }};">
+            <div style="position: relative; color: {{ item.textColor }}; transition: color 250ms ease;">
+              <span style="transition: opacity 250ms ease; opacity: {{ item.numOpacity }};">{{ item.num }}</span>
+              <span style="position: absolute; left: 0; top: 0; transition: opacity 250ms ease; opacity: {{ item.arrowOpacity }};">↗</span>
+            </div>
+            <div style="color: {{ item.textColor }}; transition: color 250ms ease;">{{ item.title }}</div>
+            <div style="color: {{ item.tagColor }}; transition: color 250ms ease;">{{ item.tag }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; color: #999; margin-top: 22px;">
+        <div>CM — Commercial</div>
+        <div>MA — Media Art</div>
+        <div>EX — Exhibition</div>
+        <div>PW — Personal Work</div>
+      </div>
+    </div>
+
+    </div><!-- /LEFT REGION -->
+
+    <!-- RIGHT REGION — collapsible framed thumbnail + Exhibitions | Experience/Education -->
+    <div class="right-region" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column;">
+
+      <!-- Collapsible framed thumbnail (opens on project hover, pushes the two columns down) -->
+      <div class="thumb-frame" style="overflow: hidden; height: {{ frameHeight }}; transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);">
+        <div style="position: relative; width: 100%; height: 620px; overflow: hidden;">
+          <canvas ref="{{ canvasRef }}" style="display: block; width: 100%; height: 620px;"></canvas>
+          {{ gifEl }}
+        </div>
+        <div style="height: 60px;"></div>
+      </div>
+
+      <!-- Exhibitions | Experience/Education row -->
+      <div class="exp-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+
+    <!-- Column 3 — Exhibitions -->
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div style="text-transform: uppercase; letter-spacing: 0.01em;">Exhibitions</div>
+      <div style="color: #111;"><sc-for list="{{ exItems }}" as="ex" hint-placeholder-count="7"><span onMouseEnter="{{ ex.onEnter }}" onMouseMove="{{ ex.onMove }}" onMouseLeave="{{ ex.onLeave }}" style="cursor: default; opacity: {{ ex.opacity }}; transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);"><span style="color: #999;">{{ ex.sep }}</span><span style="text-decoration: {{ ex.deco }}; text-underline-offset: 3px;">{{ ex.label }}</span></span></sc-for></div>
+    </div>
+
+    <!-- Column 4 — Experience / Education -->
+    <div style="display: flex; flex-direction: column; gap: 22px; max-width: 360px;">
+      <div style="text-transform: uppercase; letter-spacing: 0.01em;"><div>CAREER</div></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px"><div style="color: #999;">/</div><div>Nerdy Artist Union<br>Motion Graphics Designer (2025 – Present)</div></div>
+        <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #999;">/</div><div>d’strict Korea Inc., Media Art Team <br>Media Art Designer (2022 – 2025)</div></div>
+        <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #999;">/</div><div>MUSINSA Co., Ltd., Content Design Team<br><span style="letter-spacing: -0.225px;">Intern Graphic Designer</span>&nbsp;(2019)</div></div>
+      </div>
+
+      <div style="text-transform: uppercase; letter-spacing: 0.01em; margin-top: 32px">Education</div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #99999900"></div><div>Hongik University, Seoul<br>BFA in Visual Communication Design (2017 – 2022)</div></div>
+        <div style="display: grid; grid-template-columns: 28px 1fr; column-gap: 12px;"><div style="color: #99999900"></div><div>Seoul Sejong High School, Seoul (2013 – 2016)</div></div>
+      </div>
+    </div>
+
+      </div><!-- /Exhibitions | Experience grid -->
+
+    </div><!-- /RIGHT REGION -->
+
+  </div><!-- /flex row -->
+
+  <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
+  <div class="mobile-view" style="flex-direction: column; width: 100%;">
+
+    <!-- Sticky home-button header — always pinned at top while scrolling -->
+    <div class="m-topbar" style="text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);"><a href="home.dc.html" style="display: inline-block; line-height: 0;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a></div>
+
+    <!-- M1 · Intro — fills the full screen -->
+    <section class="m-section m-intro" style="min-height: 100dvh; display: flex; flex-direction: column; justify-content: space-between; padding: 10px 24px 34px; box-sizing: border-box;">
+      <div style="display: flex; flex-direction: column; gap: 44px; max-width: 560px;">
+        <div style="color: #111; line-height: 1.28;">Working across commercial moving image and media art for physical spaces, the practice creates visual experiences through 3D motion design, with a particular interest in simulation-based motion and dynamic visual effects. <br><br>Based in Seoul, Republic of Korea<img src="kr-flag.png" alt="🇰🇷" style="height: 0.907em; width: auto; vertical-align: -0.16em; display: inline-block; margin: 0 0.25em;">, focused on crafting vibrant graphics through the integration of motion, typography, graphic design, and AI generative technologies.</div>
+        <div class="contact">
+          <div><a class="link-arrow allow-select" href="mailto:hello.hyun0kim@gmail.com">hello.hyun0kim@gmail.com</a></div>
+          <div><a class="link-arrow" href="https://www.instagram.com/hyun0kim/" target="_blank" rel="noopener noreferrer">@hyun0kim</a></div>
+          <div style="margin-top: 22px;"><a class="link-arrow" href="https://www.behance.net/hyun0kim" target="_blank" rel="noopener noreferrer">be.net/hyun0kim</a></div>
+        </div>
+      </div>
+
+      <!-- Scroll-down hint + copyright pinned to the bottom of the first section -->
+      <div style="position: relative; padding-bottom: 72px;">
+        <div class="m-scrollhint" aria-hidden="true">
+          <svg class="chev" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M2 2 L17 10.5 L32 2" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <svg class="chev" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M2 2 L17 10.5 L32 2" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <svg class="chev" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M2 2 L17 10.5 L32 2" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <div class="m-copyright" style="position: absolute; left: 0; bottom: 0;">© 2026 Hyunyoung Kim. All rights reserved.</div>
+      </div>
+
+    </section>
+
+    <!-- M2 · Projects — thumbnails always visible -->
+    <section class="m-section" style="padding: 34px 24px 56px; box-sizing: border-box;">
+      <div style="text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 22px;">Projects</div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <sc-for list="{{ mProjects }}" as="proj" hint-placeholder-count="8">
+          <div onClick="{{ proj.onClick }}" style="cursor: {{ proj.cursor }}; display: flex; flex-direction: column; gap: 6px;">
+            <div style="color: #111; line-height: 1.15; display: flex; gap: 10px; white-space: nowrap; align-items: baseline;">
+              <span style="flex: none;">{{ proj.num }}</span>
+              <span style="flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis;">{{ proj.dTitle }}</span>
+              <span style="flex: none; color: #999;">{{ proj.meta }}</span>
+            </div>
+            <div style="width: 100%; aspect-ratio: 285 / 80; overflow: hidden;">
+              <img src="{{ proj.thumbSrc }}" alt="{{ proj.dTitle }}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- M3 · Exhibitions + Career/Education -->
+    <section class="m-section" style="padding: 34px 24px 96px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="text-transform: uppercase; letter-spacing: 0.01em;">Exhibitions</div>
+        <div style="color: #111;">“YONGSAN DOPAMINE STATION”, Seoul, 2026 — “HANGANG PPFUL CULTURAL COMPLEX”, Seoul, 2025 — “GYEONGGI CREDIT GUARANTEE FOUNDATION”, Gyeonggi, 2025 — “RAEMIAN GALLERY”, Seoul, 2025 — “CENTERFIELD”, Seoul, 2025 — “THE HYUNDAI 3RD ANNIVERSARY EVENT”, Seoul, 2024 — “JIRISAN”, Gurye, 2022</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="text-transform: uppercase; letter-spacing: 0.01em;">Career</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div style="color: #999;">/</div><div>Nerdy Artist Union<br>Motion Graphics Designer (2025 – Present)</div></div>
+          <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div style="color: #999;">/</div><div>d’strict Korea, Media Art Team <br>Media Art Designer (2022 – 2025)</div></div>
+          <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div style="color: #999;">/</div><div>MUSINSA Inc., Content Design Team<br>Intern Graphic Designer (2019)</div></div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="text-transform: uppercase; letter-spacing: 0.01em;">Education</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div>Hongik University, Seoul<br>BFA in Visual Communication Design (2017 – 2022)</div>
+          <div>Seoul Sejong High School, Seoul (2013 – 2016)</div>
+        </div>
+      </div>
+
+      <div class="m-copyright" style="margin-top: 24px;">© 2026 Hyunyoung Kim. All rights reserved.</div>
+    </section>
+
+  </div><!-- /mobile-view -->
+
+  </div><!-- /pixel-wrap -->
+
+  <!-- Exhibitions hover thumbnail — follows the cursor, shown just below it -->
+  <img src="{{ exThumb }}" alt="" style="position: fixed; left: {{ exThumbX }}; top: {{ exThumbY }}; width: {{ exThumbW }}; height: auto; pointer-events: none; z-index: 9998; display: {{ exThumbDisplay }}; outline: 0.5px solid #3a3a3a; outline-offset: -0.5px;">
+
+  <!-- Footer (fixed to bottom of screen, transparent, always on top) -->
+  <div class="home-footer" style="position: fixed; left: 48px; bottom: 48px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; background: transparent; z-index: 9999;">© 2026 Hyunyoung Kim. All rights reserved.</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { hover: null, gifSrc: null, gifShown: false, exHover: null, exX: 0, exY: 0, exW: 150 };
+  pink = "#b4d100";
+  canvasRef = React.createRef();
+  loaderRef = React.createRef();
+  pctRef = React.createRef();
+  pixWrapRef = React.createRef();
+  pxFloodRef = React.createRef();
+  pxCellRef = React.createRef();
+  pxMorphRef = React.createRef();
+  PIX_MAX = 40;
+  PIX_MIN = 12;
+  img = null;
+  DEFAULT_IMG = "https://mir-s3-cdn-cf.behance.net/project_modules/2800_webp/cacd06252011541.6a44cd493799c.png";
+  MAX_PX = 64;
+  ZOOM = 1.25;
+  FRAME_H = 620;
+  imgCache = {};
+
+  loadImg(url) {
+    if (this.imgCache[url]) return this.imgCache[url];
+    const img = new Image();
+    img.onload = () => { if (this.state.hover != null) this.draw(this.MAX_PX); };
+    img.src = url;
+    this.imgCache[url] = img;
+    return img;
+  }
+
+  componentDidMount() {
+    this.img = this.loadImg(this.DEFAULT_IMG);
+    this.runIntro();
+    this.setupMobileSnap();
+  }
+
+  // Mobile: only the FIRST section (intro) snaps. One scroll/swipe down from the
+  // intro jumps to the projects section; scrolling up while at the projects top
+  // jumps back to the intro. Everything below projects scrolls freely.
+  setupMobileSnap() {
+    const mq = window.matchMedia("(max-width: 760px)");
+    const HEADER = 48, DUR = 950;
+    const easeInOutQuart = (t) => (t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2);
+    let anim = null, snapping = false, touchStartY = null, lastWheel = 0;
+
+    const scrollEl = () => document.scrollingElement || document.documentElement;
+    const projTop = () => {
+      const secs = document.querySelectorAll(".mobile-view .m-section");
+      const p = secs[1];
+      if (!p) return null;
+      return scrollEl().scrollTop + p.getBoundingClientRect().top - HEADER;
+    };
+    const animateTo = (end) => {
+      const start = scrollEl().scrollTop;
+      if (Math.abs(end - start) < 2) return;
+      const t0 = performance.now();
+      if (anim) cancelAnimationFrame(anim);
+      snapping = true;
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / DUR);
+        scrollEl().scrollTop = start + (end - start) * easeInOutQuart(p);
+        if (p < 1) anim = requestAnimationFrame(step);
+        else { snapping = false; anim = null; }
+      };
+      anim = requestAnimationFrame(step);
+    };
+    // Returns the snap target for a gesture, or null to allow free scrolling.
+    const decide = (dir, y, pt) => {
+      const introZone = y < pt * 0.5;
+      const projTopZone = y >= pt * 0.5 && y <= pt + 40;
+      if (dir > 0 && introZone) return pt;   // intro -> projects
+      if (dir < 0 && projTopZone) return 0;  // projects top -> intro
+      return null;
+    };
+
+    const onWheel = (e) => {
+      if (!mq.matches || Math.abs(e.deltaY) < 4) return;
+      const pt = projTop();
+      if (pt == null) return;
+      const target = decide(e.deltaY > 0 ? 1 : -1, scrollEl().scrollTop, pt);
+      if (target == null) return; // free scroll
+      e.preventDefault();
+      const now = performance.now();
+      if (now - lastWheel < 120 || snapping) return;
+      lastWheel = now;
+      animateTo(target);
+    };
+    const onTouchStart = (e) => { touchStartY = e.touches[0].clientY; };
+    const onTouchMove = (e) => {
+      if (!mq.matches || touchStartY == null) return;
+      const pt = projTop();
+      if (pt == null) return;
+      const dy = touchStartY - e.touches[0].clientY;
+      if (Math.abs(dy) < 20) return;
+      const target = decide(dy > 0 ? 1 : -1, scrollEl().scrollTop, pt);
+      if (target == null) { touchStartY = null; return; } // let native scroll
+      e.preventDefault();
+      touchStartY = null;
+      if (!snapping) animateTo(target);
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+  }
+  _setupMobileSnap_disabled() {
+    const mq = window.matchMedia("(max-width: 760px)");
+    const HEADER = 48;
+    const DUR = 950;
+    const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const scroller = () => document.scrollingElement || document.documentElement;
+    const sections = () => Array.from(document.querySelectorAll(".m-section"));
+    let active = false, anim = null, snapping = false, lastWheel = 0, touchY = null;
+
+    const targetFor = (i) => {
+      const secs = sections();
+      const s = secs[Math.max(0, Math.min(secs.length - 1, i))];
+      return s ? Math.max(0, s.offsetTop - HEADER) : 0;
+    };
+    const currentIndex = () => {
+      const secs = sections();
+      const top = scroller().scrollTop + HEADER;
+      let idx = 0, best = Infinity;
+      secs.forEach((s, i) => { const d = Math.abs(s.offsetTop - top); if (d < best) { best = d; idx = i; } });
+      return idx;
+    };
+    const animateTo = (i) => {
+      const start = scroller().scrollTop;
+      const end = targetFor(i);
+      if (Math.abs(end - start) < 1) return;
+      const t0 = performance.now();
+      if (anim) cancelAnimationFrame(anim);
+      snapping = true;
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / DUR);
+        window.scrollTo(0, start + (end - start) * easeInOutCubic(p));
+        if (p < 1) anim = requestAnimationFrame(step);
+        else { snapping = false; anim = null; }
+      };
+      anim = requestAnimationFrame(step);
+    };
+    const go = (dir) => {
+      if (snapping) return;
+      const secs = sections();
+      animateTo(Math.max(0, Math.min(secs.length - 1, currentIndex() + dir)));
+    };
+
+    const onWheel = (e) => {
+      if (!active) return;
+      e.preventDefault();
+      const now = performance.now();
+      if (snapping || now - lastWheel < 140 || Math.abs(e.deltaY) < 6) return;
+      lastWheel = now;
+      go(e.deltaY > 0 ? 1 : -1);
+    };
+    const onTouchStart = (e) => { if (active) touchY = e.touches[0].clientY; };
+    const onTouchMove = (e) => { if (active) e.preventDefault(); };
+    const onTouchEnd = (e) => {
+      if (!active || touchY == null) return;
+      const dy = touchY - e.changedTouches[0].clientY;
+      if (Math.abs(dy) > 28) go(dy > 0 ? 1 : -1);
+      touchY = null;
+    };
+
+    const enable = () => {
+      if (active) return;
+      active = true;
+      const html = document.documentElement;
+      html.style.scrollSnapType = "none";
+      html.style.scrollBehavior = "auto";
+      window.addEventListener("wheel", onWheel, { passive: false });
+      window.addEventListener("touchstart", onTouchStart, { passive: true });
+      window.addEventListener("touchmove", onTouchMove, { passive: false });
+      window.addEventListener("touchend", onTouchEnd, { passive: true });
+    };
+    const disable = () => {
+      if (!active) return;
+      active = false;
+      const html = document.documentElement;
+      html.style.scrollSnapType = "";
+      html.style.scrollBehavior = "";
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+
+    const apply = () => (mq.matches ? enable() : disable());
+    apply();
+    mq.addEventListener("change", apply);
+  }
+
+  // Pixelate the whole page via an animated SVG filter: big blocks → crisp.
+  setFilterPixel(px, seedX, seedY) {
+    const wrap = this.pixWrapRef.current;
+    if (!wrap) return;
+    if (px <= 1.25) { wrap.style.filter = "none"; wrap.style.opacity = "1"; this._curPx = 1; return; }
+    this._curPx = px;
+    // lift the darkest blocks off pure black → dark grey (blends with white bg)
+    wrap.style.opacity = "0.62";
+    const s = Math.round(px);
+    const flood = this.pxFloodRef.current;
+    const cell = this.pxCellRef.current;
+    const morph = this.pxMorphRef.current;
+    const ox = seedX != null ? seedX : Math.floor(s / 2);
+    const oy = seedY != null ? seedY : Math.floor(s / 2);
+    if (flood) { flood.setAttribute("x", ox); flood.setAttribute("y", oy); }
+    if (cell) { cell.setAttribute("width", s); cell.setAttribute("height", s); }
+    if (morph) { morph.setAttribute("radius", s / 2); }
+    wrap.style.filter = "url(#om-pixelate)";
+  }
+
+  // Re-seed the sample position at ~7fps so the mosaic shimmers.
+  startSeed() {
+    this.stopSeed();
+    this._seedTimer = setInterval(() => {
+      const s = Math.round(this._targetPx || this.PIX_MAX);
+      this.setFilterPixel(s, Math.floor(Math.random() * s), Math.floor(Math.random() * s));
+    }, Math.round(1000 / 7));
+  }
+  stopSeed() { if (this._seedTimer) { clearInterval(this._seedTimer); this._seedTimer = null; } }
+
+  // Smooth tail: ease the block size from PIX_MIN → crisp, then drop the filter.
+  finishPixelate() {
+    const wrap = this.pixWrapRef.current;
+    const t0 = performance.now();
+    const DUR = 900;
+    const fromPx = this._curPx || this.PIX_MIN, toPx = 1;
+    const fromOp = parseFloat(wrap && wrap.style.opacity) || 0.5, toOp = 1;
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / DUR);
+      const e = easeOutCubic(p);
+      const px = fromPx + (toPx - fromPx) * e;
+      if (px <= 1.25) { if (wrap) wrap.style.filter = "none"; }
+      else this.setFilterPixel(px);
+      if (wrap) wrap.style.opacity = String(fromOp + (toOp - fromOp) * e);
+      if (p < 1) requestAnimationFrame(step);
+      else if (wrap) { wrap.style.filter = "none"; wrap.style.opacity = "1"; }
+    };
+    requestAnimationFrame(step);
+  }
+
+  // Clean loader: white screen with a 0% → 100% count-up, then fades out.
+  runIntro() {
+    const el = this.loaderRef && this.loaderRef.current;
+    const num = this.pctRef && this.pctRef.current;
+    if (!el) return;
+    let loaded = (document.readyState === "complete");
+    if (!loaded) window.addEventListener("load", () => { loaded = true; });
+    let fontsDone = !(document.fonts && document.fonts.ready);
+    if (!fontsDone) document.fonts.ready.then(() => { fontsDone = true; });
+
+    let p = 0, done = false;
+    const tick = () => {
+      const ready = loaded && fontsDone;
+      p += ready ? (1 - p) * 0.22 : (0.9 - p) * 0.04;
+      if (p > 1) p = 1;
+      if (num) num.textContent = Math.round(p * 100);
+      if (ready && p >= 0.999) {
+        if (!done) {
+          done = true;
+          if (num) num.textContent = "100";
+          el.style.opacity = "0";
+          setTimeout(() => { if (el) el.style.display = "none"; }, 500);
+        }
+        return;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  componentWillUnmount() { this.clearTimers(); this.stopSeed(); }
+
+  drawCover(ctx, dw, dh) {
+    const iw = this.img.naturalWidth, ih = this.img.naturalHeight;
+    const scale = Math.max(dw / iw, dh / ih) * (this.curZoom != null ? this.curZoom : this.ZOOM);
+    const rw = iw * scale, rh = ih * scale;
+    const x = this.curAlign === "left" ? 0 : (dw - rw) / 2;
+    ctx.drawImage(this.img, x, (dh - rh) / 2, rw, rh);
+  }
+
+  draw(pixelSize) {
+    const cv = this.canvasRef.current;
+    if (!cv || !this.img || !this.img.complete || !this.img.naturalWidth) return;
+    const w = cv.clientWidth || cv.offsetWidth || 600;
+    const h = this.FRAME_H;
+    if (cv.width !== w) cv.width = w;
+    if (cv.height !== h) cv.height = h;
+    const ps = Math.max(1, pixelSize);
+    const sw = Math.max(1, Math.round(w / ps));
+    const sh = Math.max(1, Math.round(h / ps));
+    const tmp = this._tmp || (this._tmp = document.createElement("canvas"));
+    tmp.width = sw; tmp.height = sh;
+    const tctx = tmp.getContext("2d");
+    tctx.imageSmoothingEnabled = true;
+    tctx.clearRect(0, 0, sw, sh);
+    this.drawCover(tctx, sw, sh);
+    const ctx = cv.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(tmp, 0, 0, sw, sh, 0, 0, w, h);
+  }
+
+  clearTimers() {
+    (this.timers || []).forEach(clearTimeout);
+    this.timers = [];
+  }
+
+  startPixelate() {
+    this.clearTimers();
+    const steps = [64, 58, 51, 48, 40, 36, 18, 1];
+    const DUR = 900;
+    const m = steps.length - 1;
+    const gaps = [];
+    for (let j = 0; j < m; j++) {
+      const x = m > 1 ? (j - (m - 1) / 2) / ((m - 1) / 2) : 0;
+      gaps.push(1 + 2.5 * x * x);
+    }
+    const total = gaps.reduce((a, b) => a + b, 0) || 1;
+    let acc = 0;
+    steps.forEach((ps, k) => {
+      this.timers.push(setTimeout(() => this.draw(ps), DUR * acc));
+      if (k < m) acc += gaps[k] / total;
+    });
+  }
+
+  enter(i) {
+    const p = this.data()[i];
+    const url = p.thumb || this.DEFAULT_IMG;
+    this.curZoom = p.zoom != null ? p.zoom : this.ZOOM;
+    this.curAlign = p.align || "center";
+    this.img = this.loadImg(url);
+    if (p.gif) this.loadImg(p.gif); // warm the cache so it's ready when revealed
+    this.setState({ hover: i, gifSrc: null, gifShown: false });
+    this.startPixelate();
+    clearTimeout(this.gifTimer);
+    if (p.gif) {
+      this.gifTimer = setTimeout(() => {
+        if (this.state.hover === i) {
+          // mount at opacity 0, then flip to 1 next frame so the transition runs
+          this.setState({ gifSrc: p.gif });
+          requestAnimationFrame(() => {
+            if (this.state.hover === i) this.setState({ gifShown: true });
+          });
+        }
+      }, 1050); // after the pixelate settles
+    }
+  }
+
+  leave() {
+    this.clearTimers();
+    clearTimeout(this.gifTimer);
+    this.setState({ hover: null, gifSrc: null, gifShown: false });
+    this.draw(this.MAX_PX);
+  }
+
+  // Raw list — order here does not matter. Sorting + numbering is automatic.
+  projectList() {
+    return [
+      { title: "Samsung VD 2026 TV On\u2011screen (2026)", tag: "[CM]", zoom: 1, thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2e08ca252011541.6a47d29c5ede3.gif", gif: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2e08ca252011541.6a47d29c5ede3.gif" },
+      { title: "Samsung Micro RGB \u2013 Milan Design Week 2026 (2026)", tag: "[EX]", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/1225d7252011541.6a47d4916270b.jpg" },
+      { title: "KIA \u2013 Busan Mobility Show 2026 (2026)", tag: "[EX]", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c7215b252011541.6a47bce099abb.jpg" },
+      { title: "d\u2019Alba Web Commercial Video (2025)", tag: "[CM]", href: "dalba-web-commercial-video.dc.html", zoom: 1.05, thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d3b847252011541.6a47b3bc164d2.jpg" },
+      { title: "Hollow (2025)", tag: "[MA]", href: "hollow.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4ea8a4252011541.6a47d49163452.jpg" },
+      { title: "NCT TEN \u2018STUNNER\u2019 Track Poster (2025)", tag: "[CM]", href: "nct-ten-stunner-track-poster.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/7d54fa252011541.6a47d49162e3f.jpg" },
+      { title: "Bloomy Sanctuary (2024)", tag: "[MA]", href: "bloomy-sanctuary.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/5fdaa1252011541.6a453532d3945.jpg" },
+      { title: "FLOW (SMAF 2024) (2024)", tag: "[MA]", href: "flow-smaf-2024.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/fae2e1252011541.6a47e6ae60772.jpg" },
+      { title: "Blooming : Cherry Blossom (2022)", tag: "[MA]", href: "blooming-cherry-blossom.dc.html", align: "left", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/47b977252011541.6a45480c0fc23.jpg" },
+      { title: "Dreamwalk (2021)", tag: "[PW]", href: "dreamwalk.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/62e0da252011541.6a454a278dd8b.jpg" },
+      { title: "Terrarium Series (2024)", tag: "[MA]", href: "petal-terrarium.dc.html" },
+      { title: "The 32nd Seoul Music Awards (2022)", tag: "[CM]", href: "the-32nd-seoul-music-awards.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8b8105252011541.6a454a278d3ec.jpg" },
+      { title: "TOMORROW X TOGETHER \u2018FREEFALL\u2019 (2022)", tag: "[CM]", href: "tomorrow-x-together-freefall.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/6e1f2b252011541.6a47e80a1c0b9.jpg" },
+    ];
+  }
+
+  // Representative point color per project (thumbnails are cross-origin CDN images,
+  // so colors are curated rather than pixel-sampled).
+  pointColor(title) {
+    const t = String(title);
+    if (t.includes("Micro RGB")) return "#c8102e";
+    if (t.includes("Samsung VD")) return "#1d1d1f";
+    if (t.includes("KIA")) return "#0b1a26";
+    if (t.includes("d\u2019Alba")) return "#d8c39c";
+    if (t.includes("Hollow")) return "#2b2b2b";
+    if (t.includes("STUNNER")) return "#a8324a";
+    if (t.includes("Bloomy Sanctuary")) return "#e493b3";
+    if (t.includes("FLOW")) return "#3a6ea5";
+    if (t.includes("Cherry Blossom")) return "#f0aec2";
+    if (t.includes("Dreamwalk")) return "#5b7a9d";
+    if (t.includes("Terrarium")) return "#3f7d5a";
+    if (t.includes("Seoul Music Awards")) return "#c9a24b";
+    if (t.includes("FREEFALL")) return "#c85a3f";
+    return "#111111";
+  }
+
+  // Pull the last 4-digit year out of the title (fallback 0 if none).
+  yearOf(title) {
+    const m = String(title).match(/(\d{4})(?!.*\d{4})/);
+    return m ? parseInt(m[1], 10) : 0;
+  }
+
+  // Always sorted: newest year first; same year → alphabetical. Numbers auto-assigned.
+  data() {
+    const sorted = this.projectList().slice().sort((a, b) => {
+      const ya = this.yearOf(a.title), yb = this.yearOf(b.title);
+      if (yb !== ya) return yb - ya;
+      return a.title.localeCompare(b.title);
+    });
+    return sorted.map((it, i) => ({ ...it, num: String(i + 1).padStart(2, "0") }));
+  }
+
+  EX_THUMB = "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5bdaaa252011541.6a47dbbbb1230.jpg";
+  exhibitionsData() {
+    return [
+      { label: "“YONGSAN DOPAMINE STATION”, Seoul, 2026", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/007ebd252011541.6a4898e5e88d4.jpg" },
+      { label: "“HANGANG PPFUL CULTURAL COMPLEX”, Seoul, 2025", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a1c8d5252011541.6a48978c8a9e1.jpg" },
+      { label: "“GYEONGGI CREDIT GUARANTEE FOUNDATION”, Gyeonggi, 2025", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/7983dc252011541.6a4897f146cdd.jpg" },
+      { label: "“RAEMIAN GALLERY”, Seoul, 2025", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/191f6a252011541.6a47d23d2985f.png" },
+      { label: "“CENTERFIELD”, Seoul, 2025", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/809329252011541.6a4898e5e8d4f.jpg" },
+      { label: "“THE HYUNDAI 3RD ANNIVERSARY EVENT”, Seoul, 2024", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/cc90c6252011541.6a4898e5e840d.jpg" },
+      { label: "“JIRISAN”, Gurye, 2022", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/disp/085739252011541.6a4899892f258.jpg" },
+    ];
+  }
+
+  renderVals() {
+    const hover = this.state.hover;
+    const pink = this.pink;
+    const items = this.data();
+    const projects = items.map((it, i) => {
+      const on = hover === i;
+      return {
+        ...it,
+        onEnter: () => this.enter(i),
+        onLeave: () => this.leave(),
+        onClick: () => { if (it.href) window.location.href = it.href; },
+        cursor: it.href ? "pointer" : "default",
+        mThumbEl: React.createElement("img", {
+          src: it.thumb || this.DEFAULT_IMG,
+          alt: it.title,
+          style: { display: "block", width: "100%", height: "100%", objectFit: "cover" },
+        }),
+        mThumbSm: React.createElement("img", {
+          src: it.thumb || this.DEFAULT_IMG,
+          alt: it.title,
+          style: { display: "block", width: "100%", height: "100%", objectFit: "cover" },
+        }),
+        mSwatch: React.createElement("div", {
+          style: { width: "100%", height: "100%", background: this.pointColor(it.title) },
+        }),
+        rowOpacity: hover === null || on ? "1" : "0.3",
+        numOpacity: on ? "0" : "1",
+        arrowOpacity: on ? "1" : "0",
+        textColor: "#111111",
+        tagColor: "#999999",
+        rowMargin: (i + 1) % 10 === 0 && i + 1 < items.length ? "11px" : "0px",
+      };
+    });
+    const stripYear = (t) => t.replace(/\s*\(\d{4}\)\s*$/, "");
+    const mProjects = items.map((it) => ({
+      num: it.num,
+      dTitle: stripYear(it.title),
+      meta: "(" + this.yearOf(it.title) + ") " + it.tag,
+      thumbSrc: it.thumb || this.DEFAULT_IMG,
+      onClick: () => { if (it.href) window.location.href = it.href; },
+      cursor: it.href ? "pointer" : "default",
+    }));
+    const frameHeight = hover === null ? "0px" : "680px";
+    const gifSrc = this.state.gifSrc;
+    const gifEl = gifSrc
+      ? React.createElement("img", {
+          src: gifSrc,
+          onLoad: () => requestAnimationFrame(() => this.setState({ gifShown: true })),
+          style: {
+            position: "absolute", inset: 0, width: "100%", height: "100%",
+            objectFit: "cover", pointerEvents: "none",
+            opacity: this.state.gifShown ? 1 : 0, transition: "opacity 0.6s ease",
+          },
+        })
+      : null;
+    const exHover = this.state.exHover;
+    const exList = this.exhibitionsData();
+    const exItems = exList.map((it, i) => ({
+      label: it.label,
+      sep: i === 0 ? "" : " — ",
+      opacity: exHover === null ? "1" : (i === exHover ? "1" : "0.3"),
+      deco: i === exHover ? "underline" : "none",
+      onEnter: () => this.setState({ exHover: i, exW: Math.round(150 + Math.random() * (337.5 - 150)) }),
+      onMove: (e) => this.setState({ exX: e.clientX, exY: e.clientY }),
+      onLeave: () => this.setState({ exHover: null }),
+    }));
+    const exActive = exHover !== null;
+    const exThumb = exActive ? (exList[exHover].thumb || this.EX_THUMB) : this.EX_THUMB;
+    const exThumbX = (this.state.exX + 14) + "px";
+    const exThumbY = (this.state.exY + 18) + "px";
+    const exThumbDisplay = exActive ? "block" : "none";
+    const exThumbW = this.state.exW + "px";
+    return { projects, mProjects, frameHeight, canvasRef: this.canvasRef, gifEl, loaderRef: this.loaderRef, pctRef: this.pctRef, pixWrapRef: this.pixWrapRef, pxFloodRef: this.pxFloodRef, pxCellRef: this.pxCellRef, pxMorphRef: this.pxMorphRef, exItems, exThumb, exThumbX, exThumbY, exThumbDisplay, exThumbW };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<style>html,body{background:#ffffff;margin:0}</style>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="color-scheme" content="light only">
+<meta name="darkreader-lock" content="">
+<script src="guard.js"></script>
+<script src="loader.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: "Suisse Intl";
+    src: url("fonts/SuisseIntl.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root { color-scheme: light only; }
+  html, body { margin: 0 !important; padding: 0 !important; background: #ffffff !important; color: #111111; }
+  * { box-sizing: border-box; }
+  ::selection { background: transparent; color: #b4d100; }
+  a { color: inherit; text-decoration: none; }
+  .pd-mobile { display: none; }
+  @media (max-width: 760px) {
+    .pd-page { padding: 0 !important; }
+    .pd-desktop, .pd-desktop-top { display: none !important; }
+    .pd-mobile { display: flex !important; }
+    .pd-foot { left: 24px !important; bottom: 16px !important; }
+  }
+</style>
+<script src="pixel-text.js"></script>
+</helmet>
+
+<div class="pd-page" style="font-family: 'Suisse Intl', sans-serif; background: #ffffff; color: #111111; min-height: 100vh; width: 100%; font-size: 15px; line-height: 1.45; letter-spacing: -0.015em; -webkit-font-smoothing: antialiased; padding: 48px 48px 96px;">
+
+  <!-- Top bar (fixed on scroll) -->
+  <div class="pd-desktop-top" style="display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 56px; margin-bottom: 32px; position: fixed; top: 0; padding-top: 48px; z-index: 10; background-color: #FFFFFF00">
+    <div style="text-transform: uppercase; letter-spacing: 0.01em;"><a href="home.dc.html" style="display: inline-block; line-height: 0; font-style: normal;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a></div>
+    <div style="text-transform: uppercase; letter-spacing: 0.01em; color: #111;">—&nbsp; PROJECTS</div>
+  </div>
+
+  <div class="pd-desktop" style="display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 56px; align-items: start; margin-top: 48px">
+
+    <!-- spacer occupying the left grid track (real content is fixed below) -->
+    <div></div>
+
+    <!-- LEFT — project meta (fixed to bottom-left, does not move on scroll) -->
+    <div style="display: flex; flex-direction: column; gap: 24px; position: fixed; left: 48px; width: 360px; z-index: 5; top: 96px">
+
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <div style="text-transform: capitalize; letter-spacing: 0.01em">Bloomy Sanctuary</div>
+        <div style="color: #11111199; font-size: 13.8px">3D Media Art / 01 : 17 / Planning, Look Dev, Simulation</div>
+      </div>
+
+      <!-- Indented credits block -->
+      <div style="padding-left: 76px; display: flex; flex-direction: column; gap: 15px">
+        <div style="font-size: 13px">d’strict Korea Inc. <br>for Media Art Platform LED.ART</div>
+        <div>
+          <div style="font-size: 13px">2023-12 / 2024-02</div>
+        </div>
+        <div>
+          <div style="font-size: 13px">Creative Direction : d’strict Korea Inc.</div>
+          <div style="font-size: 13px">Planning : Hyunyoung Kim</div>
+          <div style="font-size: 13px">Look Development : Hyunyoung Kim, Jaehoon Sung</div>
+          <div style="font-size: 13px">Simulation : Hyunyoung Kim</div>
+          <div style="font-size: 13px">Compositing : Hyunyoung Kim</div>
+        </div>
+      </div>
+
+      <!-- English description (flowing prose) -->
+      <div style="margin-top: 14px; text-wrap: pretty; font-family: Inter; text-align: left; font-size: 14px"><div>This work explores a calm spatial atmosphere through soft vegetation and subtle movement of light. Gently drifting flower particles and warm illumination were used to create a quiet visual environment for physical LED display spaces.&nbsp;<span style="text-wrap-mode: initial; letter-spacing: -0.015em;">Created using Cinema 4D and rendered with Redshift, with vegetation developed using Forester and particle simulation created using Insydium X-Particles.</span></div></div><div style="margin-top: 5px; text-wrap: pretty; font-family: Arial; font-size: 13.8px">고요하고 차분한 공간감을 표현하기 위해 부드러운 식생과 빛의 움직임을 구성하였다. 은은하게 흔들리는 꽃잎 파티클과 따뜻한 빛을 활용하여 실제 LED 구조 공간에도 온화한 인테리어 효과를 줄 수 있도록 의도하였다. Cinema4D와 Redshift 렌더러를 사용하였다. 식생 구성에는 Forester 플러그인을 활용했으며, 배의 꽃 파티클 시뮬레이션은 Insydium의 X-Particles로 제작하였다. 본 콘텐츠는 Insydium 공식 인스타그램 계정에 소개되었다.</div>
+
+      <!-- Korean description (flowing prose) -->
+      
+
+    </div><div style="display: flex; flex-direction: column; gap: 12px;">
+
+      <!-- Hero video — width fixed, height follows the video ratio -->
+      <div style="width: 100%; padding: 33.220% 0 0 0; position: relative; background: transparent;">
+        <iframe src="https://player.vimeo.com/video/1206115951?autoplay=1&amp;loop=1&amp;muted=1&amp;controls=0&amp;background=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" title="BLOOMY SANCTUARY"></iframe>
+      </div>
+
+      <!-- 2-column grid of stills -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding-bottom: 150px">
+        
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2705ff238937313.691ebd6117b4e.gif" alt="Still 2" style="display: block; width: 100%; height: 100%; object-fit: fill">
+        <div style="width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #0a0a0a;">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/144a16238937313.691ebd611829d.gif" alt="Still 3" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+        </div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/44e298238937313.691ebdbdbcac0.png" alt="Still 1" style="display: block; width: 100%; height: 100%; object-fit: cover">
+        <div style="width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background-color: #0A0A0A00">
+          
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
+  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 96px; box-sizing: border-box;">
+
+    <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
+      <a href="home.dc.html" style="display: inline-block; line-height: 0; font-style: normal;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a>
+    </div>
+
+    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: 0.01em; margin-top: 12px;">Bloomy Sanctuary</div>
+    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35;">3D Media Art / 01 : 17 / Planning, Look Dev, Simulation</div>
+
+    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b;">
+      <div>d’strict Korea Inc. <br>for Media Art Platform LED.ART</div>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <div>2023-12 / 2024-02</div>
+      </div>
+      <div>Creative Direction : d’strict Korea Inc. / Planning : Hyunyoung Kim / Look Development : Hyunyoung Kim, Jaehoon Sung / Simulation : Hyunyoung Kim / Compositing : Hyunyoung Kim</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 50px;">
+      <div style="width: 100%; padding: 33.220% 0 0 0; position: relative; background: transparent;">
+        <iframe src="https://player.vimeo.com/video/1206115951?loop=1&amp;controls=1&amp;autopause=0&amp;playsinline=1&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" title="BLOOMY SANCTUARY"></iframe>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%;">
+        <div style="aspect-ratio: 4 / 3; overflow: hidden; outline: 1px solid #1111111a; outline-offset: -1px; min-width: 0;">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2705ff238937313.691ebd6117b4e.gif" alt="Bloomy Sanctuary" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="aspect-ratio: 4 / 3; overflow: hidden; outline: 1px solid #1111111a; outline-offset: -1px; min-width: 0;">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/144a16238937313.691ebd611829d.gif" alt="Bloomy Sanctuary" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="grid-column: span 2; aspect-ratio: 16 / 9; overflow: hidden; outline: 1px solid #1111111a; outline-offset: -1px; min-width: 0;">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/44e298238937313.691ebdbdbcac0.png" alt="Bloomy Sanctuary" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 26px; padding-right: 80px; text-wrap: pretty; font-size: 14px; line-height: 1.35;">This work explores a calm spatial atmosphere through soft vegetation and subtle movement of light. Gently drifting flower particles and warm illumination were used to create a quiet visual environment for physical LED display spaces. Created using Cinema 4D and rendered with Redshift, with vegetation developed using Forester and particle simulation created using Insydium X-Particles.</div>
+    <div style="margin-top: 40px; padding-right: 80px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px;">고요하고 차분한 공간감을 표현하기 위해 부드러운 식생과 빛의 움직임을 구성하였다. 은은하게 흔들리는 꿃잎 파티클과 따뜻한 빛을 활용하여 실제 LED 구조 공간에도 온화한 인테리어 효과를 줄 수 있도록 의도하였다. Cinema4D와 Redshift 렌더러를 사용하였다. 식생 구성에는 Forester 플러그인을 활용했으며, 배의 꿃 파티클 시뮬레이션은 Insydium의 X-Particles로 제작하였다. 본 콘텐츠는 Insydium 공식 인스타그램 계정에 소개되었다.</div>
+
+  </div><!-- /pd-mobile -->
+
+  <!-- Footer (fixed to bottom of screen, transparent, always on top) -->
+  <div class="pd-foot" style="position: fixed; left: 48px; bottom: 48px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; background: transparent; z-index: 9999">© 2026 Hyunyoung Kim. All rights reserved.</div>
+
+</div>
+</x-dc>
+</body>
+</html>

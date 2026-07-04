@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<style>html,body{background:#ffffff;margin:0}</style>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="color-scheme" content="light only">
+<meta name="darkreader-lock" content="">
+<script src="guard.js"></script>
+<script src="loader.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: "Suisse Intl";
+    src: url("fonts/SuisseIntl.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root { color-scheme: light only; }
+  html, body { margin: 0 !important; padding: 0 !important; background: #ffffff !important; color: #111111; }
+  * { box-sizing: border-box; }
+  ::selection { background: transparent; color: #b4d100; }
+  a { color: inherit; text-decoration: none; }
+  .pd-mobile { display: none; }
+  @media (max-width: 760px) {
+    .pd-page { padding: 0 !important; }
+    .pd-desktop, .pd-desktop-top { display: none !important; }
+    .pd-mobile { display: flex !important; }
+    .pd-foot { left: 24px !important; bottom: 16px !important; }
+  }
+</style>
+<script src="pixel-text.js"></script>
+</helmet>
+
+<div class="pd-page" style="font-family: 'Suisse Intl', sans-serif; background: #ffffff; color: #111111; min-height: 100vh; width: 100%; font-size: 15px; line-height: 1.45; letter-spacing: -0.015em; -webkit-font-smoothing: antialiased; padding: 48px 48px 96px;">
+
+  <!-- Top bar (fixed on scroll) -->
+  <div class="pd-desktop-top" style="display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 56px; margin-bottom: 32px; position: fixed; top: 0; padding-top: 48px; z-index: 10; background-color: #FFFFFF00">
+    <div style="text-transform: uppercase; letter-spacing: 0.01em;"><a href="home.dc.html" style="display: inline-block; line-height: 0; font-style: normal;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a></div>
+    <div style="text-transform: uppercase; letter-spacing: 0.01em; color: #111;">—&nbsp; PROJECTS</div>
+  </div>
+
+  <div class="pd-desktop" style="display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 56px; align-items: start; margin-top: 48px">
+
+    <!-- spacer occupying the left grid track (real content is fixed below) -->
+    <div></div>
+
+    <!-- LEFT — project meta (fixed to bottom-left, does not move on scroll) -->
+    <div style="display: flex; flex-direction: column; gap: 24px; position: fixed; left: 48px; width: 360px; z-index: 5; top: 96px">
+
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <div style="text-transform: capitalize; letter-spacing: 0.01em">FLOW (SMAF 2024)</div>
+        <div style="color: #11111199; font-size: 13.8px; margin-top: 7px">3D Media Art / 03 : 00 / Look Dev, Simulation</div>
+      </div>
+
+      <!-- Indented credits block -->
+      <div style="padding-left: 76px; display: flex; flex-direction: column; gap: 15px">
+        <div style="font-size: 13px">d’strict Korea Inc. <br>for Seoul Media Art Festival 2024</div>
+        <div>
+          <div style="font-size: 13px">2024-11 / 2024-12</div>
+          <div style="color: #11111199; font-size: 13px">Resolution. 4K</div>
+        </div>
+        <div>
+          <div style="font-size: 13px">Creative Direction : d’strict Korea Inc.</div>
+          <div style="font-size: 13px">Planning : Sanghwa Park</div>
+          <div style="font-size: 13px">Look Development : Hyunyoung Kim, Woojin Cho</div>
+          <div style="font-size: 13px">Rigged Animation : Hyunyoung Kim, Woojin Cho</div>
+        </div>
+      </div>
+
+      <!-- English description -->
+      <div style="margin-top: 14px; text-wrap: pretty; text-align: left; font-size: 14px">Through the 2024 Seoul Media Art Festival (SMAF), d’strict unveiled the teaser for ‘FLOW2: The Story After’, a sequel to ‘FLOW’. Illuminating contemporary art since the modern era, the work is composed as public media art in which the viewer becomes the subject of the artistic experience. Using Cinema 4D and Redshift, natural movement was blended based on character rigging data. Responsible for the look development and animation of the K-POP Square medium, optimizing the composition and character movement for the anamorphic format.</div>
+      <div style="margin-top: 5px; text-wrap: pretty; font-size: 13.8px">디스트릭트는 2024 서울 미디어아트 페스티벌(SMAF)을 통해 ‘FLOW’의 후속작, ‘FLOW2: 그 후 이야기’의 티저 영상을 공개했다. 이 작품은 근대 이후의 동시대 미술을 조명하며, 관람자가 예술 경험의 주체가 되는 퍼블릭 미디어아트로 구성되었다. Cinema 4D와 Redshift 렌더러를 사용하여 캐릭터 리깅 데이터를 바탕으로 자연스러운 움직임이 구현되도록 블렌딩시키는 작업을 진행했다. K-POP 스퀘어 매체를 맡아 해당 구좌의 룩디벨롭과 애니메이션을 작업했다. 특히, 아나몰픽 포맷에 맞춰 비율과 캐릭터 동선을 조정하여 최적화된 연출을 구현하였다.</div>
+
+    </div><div style="display: flex; flex-direction: column; gap: 12px;">
+
+
+      <div style="width: 100%; padding: 56.25% 0 0 0; position: relative; background: transparent;">
+        <iframe src="https://www.youtube.com/embed/WmPpARJ5hnw?autoplay=1&amp;mute=1&amp;loop=1&amp;controls=0&amp;playlist=WmPpARJ5hnw&amp;modestbranding=1&amp;rel=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" title="FLOW (SMAF 2024)"></iframe>
+      </div>
+
+      <div style="padding-bottom: 150px"></div>
+
+    </div>
+
+  </div>
+
+  <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
+  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 96px; box-sizing: border-box;">
+
+    <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
+      <a href="home.dc.html" style="display: inline-block; line-height: 0; font-style: normal;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a>
+    </div>
+
+    <div style="font-size: 24px; font-weight: 600; color: #111; letter-spacing: 0.01em; margin-top: 12px;">FLOW (SMAF 2024)</div>
+    <div style="font-size: 16px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.04em; line-height: 1.35;">3D Media Art / 03 : 00 / Look Dev, Simulation</div>
+
+    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b;">
+      <div>d’strict Korea Inc. <br>for Seoul Media Art Festival 2024</div>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <div>2024-11 / 2024-12</div>
+        <div style="color: #11111199;">Resolution. 4K</div>
+      </div>
+      <div>Creative Direction : d’strict Korea Inc. / Planning : Sanghwa Park / Look Development : Hyunyoung Kim, Woojin Cho / Rigged Animation : Hyunyoung Kim, Woojin Cho</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 50px;">
+      <div style="width: 100%; padding: 56.25% 0 0 0; position: relative; background: transparent;">
+        <iframe src="https://www.youtube.com/embed/WmPpARJ5hnw?controls=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" title="FLOW (SMAF 2024)"></iframe>
+      </div>
+    </div>
+
+    <div style="margin-top: 26px; padding-right: 80px; text-wrap: pretty; font-size: 14px; line-height: 1.35;">Through the 2024 Seoul Media Art Festival (SMAF), d’strict unveiled the teaser for ‘FLOW2: The Story After’, a sequel to ‘FLOW’. Illuminating contemporary art since the modern era, the work is composed as public media art in which the viewer becomes the subject of the artistic experience. Using Cinema 4D and Redshift, natural movement was blended based on character rigging data. Responsible for the look development and animation of the K-POP Square medium, optimizing the composition and character movement for the anamorphic format.</div>
+    <div style="margin-top: 40px; padding-right: 80px; text-wrap: pretty; word-break: keep-all; font-size: 13.8px;">디스트릭트는 2024 서울 미디어아트 페스티벌(SMAF)을 통해 ‘FLOW’의 후속작, ‘FLOW2: 그 후 이야기’의 티저 영상을 공개했다. 이 작품은 근대 이후의 동시대 미술을 조명하며, 관람자가 예술 경험의 주체가 되는 퍼블릭 미디어아트로 구성되었다. Cinema 4D와 Redshift 렌더러를 사용하여 캠릭터 리깅 데이터를 바탕으로 자연스러운 움직임이 구현되도록 블렌딩시키는 작업을 진행했다. K-POP 스퀀어 매체를 맡아 해당 구좌의 룩디벨록과 애니메이션을 작업했다. 특히, 아나몰픽 포맷에 맞춰 비율과 캠릭터 동선을 조정하여 최적화된 연출을 구현하였다.</div>
+
+  </div><!-- /pd-mobile -->
+
+  <!-- Footer (fixed to bottom of screen, transparent, always on top) -->
+  <div class="pd-foot" style="position: fixed; left: 48px; bottom: 48px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; background: transparent; z-index: 9999">© 2026 Hyunyoung Kim. All rights reserved.</div>
+
+</div>
+</x-dc>
+</body>
+</html>
