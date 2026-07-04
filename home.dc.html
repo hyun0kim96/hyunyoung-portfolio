@@ -202,17 +202,17 @@
 
     <!-- M2 · Projects — thumbnails always visible -->
     <section class="m-section" style="padding: 34px 24px 39px; box-sizing: border-box;">
-      <div style="text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 7px; -webkit-text-stroke: 0.175px currentColor;">Projects</div>
+      <div style="text-transform: uppercase; letter-spacing: 0.01em; font-size: 14.25px; margin-bottom: 7px; -webkit-text-stroke: 0.125px currentColor;">Projects</div>
       <div style="display: flex; flex-direction: column; gap: 14px;">
         <sc-for list="{{ mProjects }}" as="proj" hint-placeholder-count="8">
-          <div onClick="{{ proj.onClick }}" style="cursor: {{ proj.cursor }}; display: flex; flex-direction: column; gap: 6px;">
-            <div style="color: #111; line-height: 1.15; display: flex; gap: 10px; white-space: nowrap; align-items: baseline;">
-              <span style="flex: none;">{{ proj.num }}</span>
+          <div onClick="{{ proj.onClick }}" style="cursor: {{ proj.cursor }}; display: grid; grid-template-columns: auto 1fr; column-gap: 10px; row-gap: 6px; align-items: baseline;">
+            <span style="font-size: 14.25px; color: #111; line-height: 1.15;">{{ proj.num }}</span>
+            <div style="color: #111; font-size: 14.25px; line-height: 1.15; display: flex; gap: 10px; white-space: nowrap; align-items: baseline; min-width: 0;">
               <span style="flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis;">{{ proj.dTitle }}</span>
-              <span style="flex: none; color: #999;">{{ proj.meta }}</span>
+              <span style="flex: none; color: #999;">{{ proj.metaYear }}</span><span style="flex: none; color: #999; display: none;">{{ proj.metaTag }}</span>
             </div>
-            <div style="width: 100%; aspect-ratio: 285 / 80; overflow: hidden;">
-              <img src="{{ proj.thumbSrc }}" alt="{{ proj.dTitle }}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+            <div style="grid-column: 2; width: calc(100% + 24px); margin-right: -24px; aspect-ratio: 285 / 33.8; overflow: hidden;">
+              <img src="{{ proj.thumbSrc }}" alt="{{ proj.dTitle }}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: {{ proj.imgObjPos }}; transform: {{ proj.imgTransform }}; transform-origin: center bottom;">
             </div>
           </div>
         </sc-for>
@@ -220,14 +220,14 @@
     </section>
 
     <!-- M3 · Exhibitions + Career/Education -->
-    <section class="m-section" style="padding: 34px 24px 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px;">
+    <section class="m-section" style="padding: 102px 24px 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 44px; font-size: 14.25px; line-height: 1.28;">
       <div style="display: flex; flex-direction: column; gap: 20px;">
-        <div style="text-transform: uppercase; letter-spacing: 0.01em;">Exhibitions</div>
+        <div style="text-transform: uppercase; letter-spacing: 0.01em; -webkit-text-stroke: 0.125px currentColor;">Exhibitions</div>
         <div style="color: #111;">“YONGSAN DOPAMINE STATION”, Seoul, 2026 — “HANGANG PPFUL CULTURAL COMPLEX”, Seoul, 2025 — “GYEONGGI CREDIT GUARANTEE FOUNDATION”, Gyeonggi, 2025 — “RAEMIAN GALLERY”, Seoul, 2025 — “CENTERFIELD”, Seoul, 2025 — “THE HYUNDAI 3RD ANNIVERSARY EVENT”, Seoul, 2024 — “JIRISAN”, Gurye, 2022</div>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 20px;">
-        <div style="text-transform: uppercase; letter-spacing: 0.01em;">Career</div>
+        <div style="text-transform: uppercase; letter-spacing: 0.01em; -webkit-text-stroke: 0.125px currentColor;">Career</div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
           <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div style="color: #999;">/</div><div>Nerdy Artist Union<br>Motion Graphics Designer (2025 – Present)</div></div>
           <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div style="color: #999;">/</div><div>d’strict Korea, Media Art Team <br>Media Art Designer (2023 – 2025)</div></div>
@@ -236,7 +236,7 @@
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 20px;">
-        <div style="text-transform: uppercase; letter-spacing: 0.01em;">Education</div>
+        <div style="text-transform: uppercase; letter-spacing: 0.01em; -webkit-text-stroke: 0.125px currentColor;">Education</div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
           <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div></div><div>Hongik University, Seoul<br>BFA in Visual Communication Design (2017 – 2023)</div></div>
           <div style="display: grid; grid-template-columns: 26px 1fr; column-gap: 10px;"><div></div><div>Seoul Sejong High School, Seoul (2013 – 2016)</div></div>
@@ -662,7 +662,7 @@ class Component extends DCLogic {
   // Raw list — order here does not matter. Sorting + numbering is automatic.
   projectList() {
     return [
-      { title: "Samsung VD 2026 TV On\u2011screen (2026)", tag: "[CM]", zoom: 1, thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2e08ca252011541.6a47d29c5ede3.gif", gif: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2e08ca252011541.6a47d29c5ede3.gif" },
+      { title: "Samsung VD 2026 TV On\u2011screen (2026)", tag: "[CM]", zoom: 1, thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2e08ca252011541.6a47d29c5ede3.gif", gif: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2e08ca252011541.6a47d29c5ede3.gif", mThumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/105084252011541.6a454ea12a425.jpg" },
       { title: "Samsung Micro RGB \u2013 Milan Design Week 2026 (2026)", tag: "[EX]", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/1225d7252011541.6a47d4916270b.jpg" },
       { title: "KIA \u2013 Busan Mobility Show 2026 (2026)", tag: "[EX]", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c7215b252011541.6a47bce099abb.jpg" },
       { title: "d\u2019Alba Web Commercial Video (2025)", tag: "[CM]", href: "dalba-web-commercial-video.dc.html", zoom: 1.05, thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d3b847252011541.6a47b3bc164d2.jpg" },
@@ -765,7 +765,11 @@ class Component extends DCLogic {
       num: it.num,
       dTitle: stripYear(it.title),
       meta: "(" + this.yearOf(it.title) + ") " + it.tag,
-      thumbSrc: it.thumb || this.DEFAULT_IMG,
+      metaYear: "(" + this.yearOf(it.title) + ")",
+      metaTag: " " + it.tag,
+      thumbSrc: it.mThumb || it.thumb || this.DEFAULT_IMG,
+      imgTransform: it.title.includes("Bloomy Sanctuary") ? "scale(2)" : "none",
+      imgObjPos: it.title.includes("Bloomy Sanctuary") ? "center 72%" : (it.title.includes("Samsung VD") ? "center 65%" : "center"),
       onClick: () => { if (it.href) window.location.href = it.href; },
       cursor: it.href ? "pointer" : "default",
     }));
