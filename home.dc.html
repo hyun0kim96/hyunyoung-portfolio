@@ -67,15 +67,9 @@
     .mobile-view { display: flex !important; }
     .m-topbar { position: sticky; top: 0; z-index: 60; }
     .m-intro { min-height: calc(100dvh - 48px) !important; }
-    .home-footer { display: none !important; }
+    html.m-intro-lock, html.m-intro-lock body { overflow: hidden !important; }
   }
-  @keyframes scrollHintPulse { 0%, 100% { opacity: 0.14; } 50% { opacity: 0.5; } }
-  .m-scrollhint { display: flex; flex-direction: column; align-items: center; transition: opacity 0.6s ease; will-change: opacity; }
-  .m-scrollhint .chev { display: block; margin-top: -3px; opacity: 0.14; animation: scrollHintPulse 2.6s ease-in-out infinite; }
-  .m-scrollhint .chev:first-child { margin-top: 0; }
-  .m-scrollhint .chev:nth-child(1) { animation-delay: 0s; }
-  .m-scrollhint .chev:nth-child(2) { animation-delay: 0.28s; }
-  .m-scrollhint .chev:nth-child(3) { animation-delay: 0.56s; }
+  .m-scrollhint { display: flex; align-items: center; transition: opacity 0.6s ease; will-change: opacity; }
   .m-copyright { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; }
 </style>
 <script src="pixel-text.js"></script>
@@ -181,7 +175,7 @@
     <div class="m-topbar" style="text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);"><a href="home.dc.html" style="display: inline-block; line-height: 0;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font="Ballet" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="15" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 220px; height: 24px;"></canvas></a></div>
 
     <!-- M1 · Intro — fills the full screen -->
-    <section class="m-section m-intro" style="min-height: 100dvh; display: flex; flex-direction: column; justify-content: space-between; padding: 10px 24px 34px; box-sizing: border-box;">
+    <section class="m-section m-intro" style="min-height: 100dvh; display: flex; flex-direction: column; padding: 10px 24px 34px; box-sizing: border-box;">
       <div style="display: flex; flex-direction: column; gap: 44px; max-width: 560px;">
         <div style="color: #111; line-height: 1.28;">Working across commercial moving image and media art for physical spaces, the practice creates visual experiences through 3D motion design, with a particular interest in simulation-based motion and dynamic visual effects. <br><br>Based in Seoul, Republic of Korea<img src="kr-flag.png" alt="🇰🇷" style="height: 0.907em; width: auto; vertical-align: -0.16em; display: inline-block; margin: 0 0.25em;">, focused on crafting vibrant graphics through the integration of motion, typography, graphic design, and generative technologies.</div>
         <div class="contact">
@@ -191,12 +185,10 @@
         </div>
       </div>
 
-      <!-- Scroll-down hint at the bottom of the first section -->
-      <div style="position: relative; padding-bottom: 28px;">
-        <div class="m-scrollhint" aria-hidden="true">
-          <svg class="chev" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M2 2 L17 10.5 L32 2" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-          <svg class="chev" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M2 2 L17 10.5 L32 2" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-          <svg class="chev" width="34" height="12" viewBox="0 0 34 12" fill="none"><path d="M2 2 L17 10.5 L32 2" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <!-- Scroll-down hint — tap to advance -->
+      <div style="margin-top: 56px;">
+        <div class="m-scrollhint" aria-label="Scroll to projects" role="button" style="justify-content: flex-start;">
+          <canvas ref="{{ arrowCanvasRef }}" style="width: 26px; height: 58px; display: block;"></canvas>
         </div>
       </div>
 
@@ -271,6 +263,7 @@ class Component extends DCLogic {
   pxFloodRef = React.createRef();
   pxCellRef = React.createRef();
   pxMorphRef = React.createRef();
+  arrowCanvasRef = React.createRef();
   PIX_MAX = 40;
   PIX_MIN = 12;
   img = null;
@@ -293,6 +286,117 @@ class Component extends DCLogic {
     this.img = this.loadImg(this.DEFAULT_IMG);
     this.runIntro();
     this.setupMobileSnap();
+    this.runArrowPixelateIntro();
+  }
+
+  // Arrow hint: draws big-block → crisp pixelation while the stroke trims in,
+  // same downscale/upscale technique as the project-thumbnail hover reveal.
+  runArrowPixelateIntro() {
+    const cv = this.arrowCanvasRef.current;
+    if (!cv) return;
+    const dpr = window.devicePixelRatio || 1;
+    const W = 26, H = 58;
+    cv.width = W * dpr;
+    cv.height = H * dpr;
+    const ctx = cv.getContext("2d");
+
+    const mainPts = [[13, 14], [13, 42], [24, 31]];
+    const wingPts = [[2, 31], [9.5, 39]];
+    const mainLen = 43.6, wingLen = 11;
+
+    const partial = (pts, dist) => {
+      let remaining = dist;
+      const out = [pts[0]];
+      for (let i = 0; i < pts.length - 1; i++) {
+        const [x0, y0] = pts[i], [x1, y1] = pts[i + 1];
+        const segLen = Math.hypot(x1 - x0, y1 - y0);
+        if (remaining >= segLen) { out.push([x1, y1]); remaining -= segLen; }
+        else { const t = Math.max(0, remaining / segLen); out.push([x0 + (x1 - x0) * t, y0 + (y1 - y0) * t]); remaining = 0; break; }
+      }
+      return out;
+    };
+    const strokePts = (pts, color, alpha) => {
+      if (pts.length < 2) return;
+      ctx.beginPath();
+      pts.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
+      ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = 1.54;
+      ctx.strokeStyle = color; ctx.globalAlpha = alpha;
+      ctx.stroke(); ctx.globalAlpha = 1;
+    };
+    const lerpColor = (a, b, t) => {
+      const pa = [parseInt(a.slice(1, 3), 16), parseInt(a.slice(3, 5), 16), parseInt(a.slice(5, 7), 16)];
+      const pb = [parseInt(b.slice(1, 3), 16), parseInt(b.slice(3, 5), 16), parseInt(b.slice(5, 7), 16)];
+      const c = pa.map((v, i) => Math.round(v + (pb[i] - v) * t));
+      return `rgb(${c[0]},${c[1]},${c[2]})`;
+    };
+    const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+    const off = document.createElement("canvas");
+    off.width = W * dpr; off.height = H * dpr;
+    const octx = off.getContext("2d");
+    const tmp = document.createElement("canvas");
+
+    const renderFrame = (eased, colorT, block, overallAlpha) => {
+      overallAlpha = overallAlpha == null ? 1 : overallAlpha;
+      octx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      octx.clearRect(0, 0, W, H);
+      const savedStroke = ctx.strokeStyle;
+      const drawTo = (c) => {
+        c.beginPath();
+      };
+      // draw onto offscreen using the same helper by temporarily swapping ctx
+      const realCtx = ctx;
+      // temporarily redirect drawing to octx
+      const strokeOn = (target, pts, color, alpha) => {
+        if (pts.length < 2) return;
+        target.beginPath();
+        pts.forEach((p, i) => i === 0 ? target.moveTo(p[0], p[1]) : target.lineTo(p[0], p[1]));
+        target.lineCap = "round"; target.lineJoin = "round"; target.lineWidth = 1.54;
+        target.strokeStyle = color; target.globalAlpha = alpha;
+        target.stroke(); target.globalAlpha = 1;
+      };
+      strokeOn(octx, mainPts, "#111111", 0.2);
+      strokeOn(octx, wingPts, "#111111", 0.2);
+      const col = lerpColor("#111111", "#111111", colorT);
+      strokeOn(octx, partial(mainPts, mainLen * eased), col, 1);
+      strokeOn(octx, partial(wingPts, wingLen * eased), col, 1);
+
+      const bpx = Math.max(1, block);
+      const sw = Math.max(1, Math.round((W * dpr) / bpx));
+      const sh = Math.max(1, Math.round((H * dpr) / bpx));
+      tmp.width = sw; tmp.height = sh;
+      const tctx = tmp.getContext("2d");
+      tctx.imageSmoothingEnabled = true;
+      tctx.clearRect(0, 0, sw, sh);
+      tctx.drawImage(off, 0, 0, W * dpr, H * dpr, 0, 0, sw, sh);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.imageSmoothingEnabled = false;
+      ctx.clearRect(0, 0, W * dpr, H * dpr);
+      ctx.globalAlpha = overallAlpha;
+      ctx.drawImage(tmp, 0, 0, sw, sh, 0, 0, W * dpr, H * dpr);
+      ctx.globalAlpha = 1;
+    };
+
+    const DELAY = 2000, TRIM = 3200, HOLD_COLOR = 667, PAUSE = 3500;
+    const CYCLE = TRIM + HOLD_COLOR + PAUSE;
+    const t0 = performance.now();
+    const step = (now) => {
+      const t = now - t0;
+      if (t < DELAY) { requestAnimationFrame(step); return; }
+      const cycle = (t - DELAY) % CYCLE;
+      if (cycle <= TRIM) {
+        const p = Math.min(1, cycle / TRIM);
+        const block = 1 + 13 * (1 - p);
+        renderFrame(p, 0, block, 0.4);
+      } else if (cycle <= TRIM + HOLD_COLOR) {
+        const cp = (cycle - TRIM) / HOLD_COLOR;
+        renderFrame(1, cp, 1, 0.4 + 0.6 * cp);
+      } else {
+        renderFrame(1, 1, 1); // paused: fully drawn, black, crisp
+      }
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
   }
 
   // Mobile: only the FIRST section (intro) snaps. One scroll/swipe down from the
@@ -302,6 +406,9 @@ class Component extends DCLogic {
     const mq = window.matchMedia("(max-width: 760px)");
     const HEADER = 48;
     let snapping = false, touchStartY = null, locked = false;
+
+    if (mq.matches) document.documentElement.classList.add("m-intro-lock");
+    const unlockIntro = () => document.documentElement.classList.remove("m-intro-lock");
 
     const scrollEl = () => document.scrollingElement || document.documentElement;
     const DUR = 1150;
@@ -338,9 +445,12 @@ class Component extends DCLogic {
     };
 
     const onWheel = (e) => {
-      if (!mq.matches || snapping || Math.abs(e.deltaY) < 4) return;
+      if (!mq.matches || snapping) return;
       const pt = projTop();
       if (pt == null) return;
+      // Intro section: block ALL wheel scroll — the arrow tap is the only way down.
+      if (scrollEl().scrollTop < pt - 2) { e.preventDefault(); return; }
+      if (Math.abs(e.deltaY) < 4) return;
       const target = decide(e.deltaY > 0 ? 1 : -1, scrollEl().scrollTop, pt);
       if (target == null) return; // free scroll
       e.preventDefault();
@@ -355,6 +465,8 @@ class Component extends DCLogic {
       if (!mq.matches || touchStartY == null || snapping) return;
       const pt = projTop();
       if (pt == null) return;
+      // Intro section: block ALL touch-scroll — the arrow tap is the only way down.
+      if (scrollEl().scrollTop < pt - 2) { e.preventDefault(); return; }
       const dy = touchStartY - e.touches[0].clientY;
       // Only intercept once the swipe is a clear boundary crossing; then lock the
       // page so native scroll doesn't drag it raggedly before the snap.
@@ -396,13 +508,13 @@ class Component extends DCLogic {
       hint.style.opacity = String(o);
     };
     window.addEventListener("scroll", updateHint, { passive: true });
-    updateHint();
 
     // Tap the scroll-down hint to jump straight to the Projects section.
     if (hint) {
       hint.style.cursor = "pointer";
       hint.style.pointerEvents = "auto";
       hint.addEventListener("click", () => {
+        unlockIntro();
         const pt = projTop();
         if (pt != null) smoothTo(pt);
       });
@@ -805,7 +917,7 @@ class Component extends DCLogic {
     const exThumbY = (this.state.exY + 18) + "px";
     const exThumbDisplay = exActive ? "block" : "none";
     const exThumbW = this.state.exW + "px";
-    return { projects, mProjects, frameHeight, canvasRef: this.canvasRef, gifEl, loaderRef: this.loaderRef, pctRef: this.pctRef, pixWrapRef: this.pixWrapRef, pxFloodRef: this.pxFloodRef, pxCellRef: this.pxCellRef, pxMorphRef: this.pxMorphRef, exItems, exThumb, exThumbX, exThumbY, exThumbDisplay, exThumbW };
+    return { projects, mProjects, frameHeight, canvasRef: this.canvasRef, gifEl, loaderRef: this.loaderRef, pctRef: this.pctRef, pixWrapRef: this.pixWrapRef, pxFloodRef: this.pxFloodRef, pxCellRef: this.pxCellRef, pxMorphRef: this.pxMorphRef, arrowCanvasRef: this.arrowCanvasRef, exItems, exThumb, exThumbX, exThumbY, exThumbDisplay, exThumbW };
   }
 }
 </script>
