@@ -203,14 +203,14 @@
       <div style="text-transform: uppercase; letter-spacing: 0.01em; font-size: 14.25px; margin-bottom: 20px; -webkit-text-stroke: 0.125px currentColor;">Projects</div>
       <div style="display: flex; flex-direction: column; gap: 14px;">
         <sc-for list="{{ mProjects }}" as="proj" hint-placeholder-count="8">
-          <div onClick="{{ proj.onClick }}" style="cursor: {{ proj.cursor }}; display: grid; grid-template-columns: auto 1fr; column-gap: 10px; row-gap: 6px; align-items: baseline;">
+          <div class="m-proj-row" onClick="{{ proj.onClick }}" style="cursor: {{ proj.cursor }}; display: grid; grid-template-columns: auto 1fr; column-gap: 10px; row-gap: 6px; align-items: baseline; opacity: 0.25; transition: opacity 0.25s ease-out; will-change: opacity;">
             <span style="font-size: 14.25px; color: #111; line-height: 1.15;">{{ proj.num }}</span>
             <div style="color: #111; font-size: 14.25px; line-height: 1.15; display: flex; gap: 10px; white-space: nowrap; align-items: baseline; min-width: 0; width: calc(100% + 12px); margin-right: -12px;">
               <span style="flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis;">{{ proj.dTitle }}</span>
               <span style="flex: none; color: #999; margin-left: auto;">{{ proj.metaYear }}</span><span style="flex: none; color: #999; display: none;">{{ proj.metaTag }}</span>
             </div>
             <div style="grid-column: 2; width: calc(100% + 12px); margin-right: -12px; aspect-ratio: 285 / 33.8; overflow: hidden;">
-              <img src="{{ proj.thumbSrc }}" alt="{{ proj.dTitle }}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: {{ proj.imgObjPos }}; transform: {{ proj.imgTransform }}; transform-origin: center bottom;">
+              <img class="m-proj-thumb" src="{{ proj.thumbSrc }}" alt="{{ proj.dTitle }}" data-base-transform="{{ proj.imgTransform }}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: {{ proj.imgObjPos }}; transform: {{ proj.imgTransform }}; transform-origin: center bottom; filter: grayscale(1); transition: filter 0.25s ease-out, transform 0.25s ease-out; will-change: filter, transform;">
             </div>
           </div>
         </sc-for>
@@ -290,6 +290,44 @@ class Component extends DCLogic {
     this.img = this.loadImg(this.DEFAULT_IMG);
     this.runIntro();
     this.setupMobileSnap();
+    this.setupProjRowFade();
+  }
+
+  // Mobile only: fade each project row in/out based on how close it is to the
+  // vertical center of the viewport, for a playful scroll-linked effect.
+  setupProjRowFade() {
+    const mq = window.matchMedia("(max-width: 760px)");
+    if (!mq.matches) return;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const rows = document.querySelectorAll(".m-proj-row");
+      const vh = window.innerHeight;
+      const center = vh * 0.3;
+      rows.forEach((row) => {
+        const r = row.getBoundingClientRect();
+        const rowCenter = r.top + r.height / 2;
+        const dist = Math.abs(rowCenter - center);
+        const flat = vh * 0.32;
+        const t = dist <= flat ? 0 : Math.min(1, (dist - flat) / (vh * 0.55));
+        const opacity = 1 - t * 0.75; // 1 → 0.25
+        row.style.opacity = String(opacity);
+        const thumb = row.querySelector(".m-proj-thumb");
+        if (thumb) {
+          thumb.style.filter = `grayscale(${t})`;
+          const zoom = 1 + (1 - t) * 0.12; // up to 1.12x at center
+          const base = thumb.dataset.baseTransform;
+          const baseTf = base && base !== "none" ? base + " " : "";
+          thumb.style.transform = `${baseTf}scale(${zoom})`;
+        }
+      });
+    };
+    const onScroll = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    requestAnimationFrame(update);
   }
 
   // Arrow hint: draws big-block → crisp pixelation while the stroke trims in,
@@ -772,8 +810,8 @@ class Component extends DCLogic {
   projectList() {
     return [
       { title: "Samsung VD 2026 TV On\u2011screen (2026)", tag: "[CM]", zoom: 1.25, thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c7e814252011541.6a522115515b4.jpg", mThumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c7e814252011541.6a522115515b4.jpg" },
-      { title: "Samsung Micro RGB \u2013 Milan Design Week 2026 (2026)", tag: "[EX]", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/1225d7252011541.6a47d4916270b.jpg" },
-      { title: "KIA \u2013 Busan Mobility Show 2026 (2026)", tag: "[EX]", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/6bd2fd252011541.6a522023e5b4a.jpg" },
+      { title: "Samsung Micro RGB / Milan Design Week 2026 (2026)", tag: "[EX]", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/1225d7252011541.6a47d4916270b.jpg" },
+      { title: "KIA / Busan Mobility Show 2026 (2026)", tag: "[EX]", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/6bd2fd252011541.6a522023e5b4a.jpg" },
       { title: "d'Alba Web Commercial Video (2025)", tag: "[CM]", href: "dalba-web-commercial-video.dc.html", zoom: 1.05, thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d3b847252011541.6a47b3bc164d2.jpg" },
       { title: "Hollow (2025)", tag: "[MA]", href: "hollow.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4ea8a4252011541.6a47d49163452.jpg" },
       { title: "NCT TEN 'STUNNER' Track Poster (2025)", tag: "[CM]", href: "nct-ten-stunner-track-poster.dc.html", thumb: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/7d54fa252011541.6a47d49162e3f.jpg" },
@@ -870,15 +908,17 @@ class Component extends DCLogic {
       };
     });
     const stripYear = (t) => t.replace(/\s*\(\d{4}\)\s*$/, "");
+    const catNames = { "[CM]": "Commercial", "[MA]": "Media Art", "[EX]": "Exhibition", "[PW]": "Personal Work" };
     const mProjects = items.map((it) => ({
       num: it.num,
       dTitle: stripYear(it.title),
       meta: "(" + this.yearOf(it.title) + ") " + it.tag,
       metaYear: String(this.yearOf(it.title)),
       metaTag: " " + it.tag,
+      metaCategory: catNames[it.tag] || it.tag,
       thumbSrc: it.mThumb || it.thumb || this.DEFAULT_IMG,
       imgTransform: it.title.includes("Bloomy Sanctuary") ? "scale(2)" : "none",
-      imgObjPos: it.title.includes("Bloomy Sanctuary") ? "center 72%" : (it.title.includes("Samsung VD") ? "center 65%" : "center"),
+      imgObjPos: it.title.includes("Bloomy Sanctuary") ? "center 72%" : (it.title.includes("Samsung VD") ? "center 65%" : (it.title.includes("KIA") ? "center 59%" : "center")),
       onClick: () => { if (it.href) window.location.href = it.href; },
       cursor: it.href ? "pointer" : "default",
     }));
