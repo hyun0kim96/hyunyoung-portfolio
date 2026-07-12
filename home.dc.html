@@ -188,7 +188,10 @@
       <!-- Scroll-down hint — tap to advance -->
       <div style="margin-top: 56px;">
         <div class="m-scrollhint" aria-label="Scroll to projects" role="button" style="justify-content: flex-start;">
-          <canvas ref="{{ arrowCanvasRef }}" style="width: 26px; height: 58px; display: block;"></canvas>
+          <svg width="26" height="58" viewBox="0 0 26 58" fill="none">
+            <path d="M13 14 L13 42 L24 31" stroke="#111111" stroke-width="1.54" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M2 31 L9.5 39" stroke="#111111" stroke-width="1.54" stroke-linecap="round"></path>
+          </svg>
         </div>
       </div>
 
@@ -286,12 +289,11 @@ class Component extends DCLogic {
     this.img = this.loadImg(this.DEFAULT_IMG);
     this.runIntro();
     this.setupMobileSnap();
-    this.runArrowPixelateIntro();
   }
 
   // Arrow hint: draws big-block → crisp pixelation while the stroke trims in,
   // same downscale/upscale technique as the project-thumbnail hover reveal.
-  runArrowPixelateIntro() {
+  _runArrowPixelateIntro_disabled() {
     const cv = this.arrowCanvasRef.current;
     if (!cv) return;
     const dpr = window.devicePixelRatio || 1;
