@@ -67,7 +67,6 @@
     .mobile-view { display: flex !important; }
     .m-topbar { position: sticky; top: 0; z-index: 60; }
     .m-intro { min-height: calc(100dvh - 48px) !important; }
-    html.m-intro-lock, html.m-intro-lock body { overflow: hidden !important; }
   }
   .m-scrollhint { display: flex; align-items: center; transition: opacity 0.6s ease; will-change: opacity; }
   .m-copyright { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; }
@@ -409,9 +408,6 @@ class Component extends DCLogic {
     const HEADER = 48;
     let snapping = false, touchStartY = null, locked = false;
 
-    if (mq.matches) document.documentElement.classList.add("m-intro-lock");
-    const unlockIntro = () => document.documentElement.classList.remove("m-intro-lock");
-
     const scrollEl = () => document.scrollingElement || document.documentElement;
     const DUR = 1150;
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
@@ -450,8 +446,6 @@ class Component extends DCLogic {
       if (!mq.matches || snapping) return;
       const pt = projTop();
       if (pt == null) return;
-      // Intro section: block ALL wheel scroll — the arrow tap is the only way down.
-      if (scrollEl().scrollTop < pt - 2) { e.preventDefault(); return; }
       if (Math.abs(e.deltaY) < 4) return;
       const target = decide(e.deltaY > 0 ? 1 : -1, scrollEl().scrollTop, pt);
       if (target == null) return; // free scroll
@@ -467,8 +461,6 @@ class Component extends DCLogic {
       if (!mq.matches || touchStartY == null || snapping) return;
       const pt = projTop();
       if (pt == null) return;
-      // Intro section: block ALL touch-scroll — the arrow tap is the only way down.
-      if (scrollEl().scrollTop < pt - 2) { e.preventDefault(); return; }
       const dy = touchStartY - e.touches[0].clientY;
       // Only intercept once the swipe is a clear boundary crossing; then lock the
       // page so native scroll doesn't drag it raggedly before the snap.
@@ -516,7 +508,6 @@ class Component extends DCLogic {
       hint.style.cursor = "pointer";
       hint.style.pointerEvents = "auto";
       hint.addEventListener("click", () => {
-        unlockIntro();
         const pt = projTop();
         if (pt != null) smoothTo(pt);
       });
