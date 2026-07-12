@@ -1,0 +1,16 @@
+{
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/home.dc.html" },
+    { "source": "/blooming-cherry-blossom", "destination": "/blooming-cherry-blossom.dc.html" },
+    { "source": "/bloomy-sanctuary", "destination": "/bloomy-sanctuary.dc.html" },
+    { "source": "/dalba-web-commercial-video", "destination": "/dalba-web-commercial-video.dc.html" },
+    { "source": "/dreamwalk", "destination": "/dreamwalk.dc.html" },
+    { "source": "/flow-smaf-2024", "destination": "/flow-smaf-2024.dc.html" },
+    { "source": "/hollow", "destination": "/hollow.dc.html" },
+    { "source": "/nct-ten-stunner-track-poster", "destination": "/nct-ten-stunner-track-poster.dc.html" },
+    { "source": "/petal-terrarium", "destination": "/petal-terrarium.dc.html" },
+    { "source": "/the-32nd-seoul-music-awards", "destination": "/the-32nd-seoul-music-awards.dc.html" },
+    { "source": "/tomorrow-x-together-freefall", "destination": "/tomorrow-x-together-freefall.dc.html" }
+  ]
+}
