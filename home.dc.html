@@ -355,7 +355,22 @@ class Component extends DCLogic {
     tctx.imageSmoothingEnabled = true;
     tctx.clearRect(0, 0, sw, sh);
     tctx.filter = thumb.style.filter || "none";
-    try { tctx.drawImage(thumb, 0, 0, sw, sh); } catch (e) { return; }
+    // Replicate the <img>'s object-fit:cover + object-position cropping so the
+    // pixelated canvas frames the exact same crop as the visible thumbnail.
+    const nw = thumb.naturalWidth, nh = thumb.naturalHeight;
+    if (!nw || !nh) return;
+    const boxRatio = w / h, imgRatio = nw / nh;
+    let cropW, cropH;
+    if (imgRatio > boxRatio) { cropH = nh; cropW = nh * boxRatio; }
+    else { cropW = nw; cropH = nw / boxRatio; }
+    const cs = window.getComputedStyle(thumb);
+    const posParts = (cs.objectPosition || "50% 50%").split(" ");
+    const pctOf = (v, total) => v.endsWith("%") ? parseFloat(v) / 100 : parseFloat(v) / total;
+    const px = pctOf(posParts[0] || "50%", 1);
+    const py = pctOf(posParts[1] || "50%", 1);
+    const cropX = (nw - cropW) * px;
+    const cropY = (nh - cropH) * py;
+    try { tctx.drawImage(thumb, cropX, cropY, cropW, cropH, 0, 0, sw, sh); } catch (e) { return; }
     ctx.imageSmoothingEnabled = false;
     ctx.clearRect(0, 0, w * dpr, h * dpr);
     ctx.drawImage(tmp, 0, 0, sw, sh, 0, 0, w * dpr, h * dpr);
