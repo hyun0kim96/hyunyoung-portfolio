@@ -372,7 +372,7 @@ class Component extends DCLogic {
     let geo = thumb._pixGeo;
     if (!geo) {
       const cs = window.getComputedStyle(thumb);
-      geo = { objectPosition: cs.objectPosition, transform: cs.transform };
+      geo = { objectPosition: cs.objectPosition, transform: cs.transform, transformOrigin: cs.transformOrigin };
       thumb._pixGeo = geo;
     }
     const cs = geo;
@@ -391,9 +391,14 @@ class Component extends DCLogic {
       if (m) scaleFactor = parseFloat(m[1]) || 1;
     }
     if (scaleFactor !== 1) {
+      // Respect the img's transform-origin (e.g. "center bottom") so the crop
+      // shrinks around the same anchor the CSS scale() uses, not a plain center.
+      const originParts = (cs.transformOrigin || "50% 50%").split(" ");
+      const originX = originParts[0].endsWith("%") ? parseFloat(originParts[0]) / 100 : 0.5;
+      const originY = originParts[1] && originParts[1].endsWith("%") ? parseFloat(originParts[1]) / 100 : 1;
       const newCropW = cropW / scaleFactor, newCropH = cropH / scaleFactor;
-      cropX += (cropW - newCropW) / 2;
-      cropY += (cropH - newCropH) / 2;
+      cropX += (cropW - newCropW) * originX;
+      cropY += (cropH - newCropH) * originY;
       cropW = newCropW; cropH = newCropH;
     }
     try { tctx.drawImage(thumb, cropX, cropY, cropW, cropH, 0, 0, sw, sh); } catch (e) { return; }
