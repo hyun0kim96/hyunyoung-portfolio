@@ -307,6 +307,9 @@ class Component extends DCLogic {
       const center = vh * 0.3;
       rows.forEach((row) => {
         const r = row.getBoundingClientRect();
+        // Skip all work for rows well outside the viewport — cheap bail-out
+        // avoids layout/canvas cost piling up during the intro→projects animated scroll.
+        if (r.bottom < -300 || r.top > vh + 300) return;
         const rowCenter = r.top + r.height / 2;
         const dist = Math.abs(rowCenter - center);
         const flat = vh * 0.24;
@@ -341,8 +344,9 @@ class Component extends DCLogic {
     const h = Math.max(1, Math.round(rect.height));
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const block = Math.round(1 + t * 17); // 1 → 18px blocks at max effect
-    if (cv._lastBlock === block && cv._lastW === w && cv._lastH === h) return;
-    cv._lastBlock = block; cv._lastW = w; cv._lastH = h;
+    const roundedT = Math.round(t * 100);
+    if (cv._lastBlock === block && cv._lastW === w && cv._lastH === h && cv._lastT === roundedT) return;
+    cv._lastBlock = block; cv._lastW = w; cv._lastH = h; cv._lastT = roundedT;
 
     cv.width = w * dpr; cv.height = h * dpr;
     const ctx = cv.getContext("2d");
@@ -363,13 +367,35 @@ class Component extends DCLogic {
     let cropW, cropH;
     if (imgRatio > boxRatio) { cropH = nh; cropW = nh * boxRatio; }
     else { cropW = nw; cropH = nw / boxRatio; }
-    const cs = window.getComputedStyle(thumb);
+    // object-position/transform are static per-thumb — read via getComputedStyle
+    // only once and cache, instead of every scroll frame (layout-thrashing cost).
+    let geo = thumb._pixGeo;
+    if (!geo) {
+      const cs = window.getComputedStyle(thumb);
+      geo = { objectPosition: cs.objectPosition, transform: cs.transform };
+      thumb._pixGeo = geo;
+    }
+    const cs = geo;
     const posParts = (cs.objectPosition || "50% 50%").split(" ");
     const pctOf = (v, total) => v.endsWith("%") ? parseFloat(v) / 100 : parseFloat(v) / total;
     const px = pctOf(posParts[0] || "50%", 1);
     const py = pctOf(posParts[1] || "50%", 1);
-    const cropX = (nw - cropW) * px;
-    const cropY = (nh - cropH) * py;
+    let cropX = (nw - cropW) * px;
+    let cropY = (nh - cropH) * py;
+    // Account for any CSS transform: scale(N) on the <img> (e.g. Bloomy Sanctuary's zoom)
+    // by shrinking the sampled crop region around its own center to match.
+    const tf = cs.transform;
+    let scaleFactor = 1;
+    if (tf && tf !== "none") {
+      const m = tf.match(/matrix\(([^,]+),/);
+      if (m) scaleFactor = parseFloat(m[1]) || 1;
+    }
+    if (scaleFactor !== 1) {
+      const newCropW = cropW / scaleFactor, newCropH = cropH / scaleFactor;
+      cropX += (cropW - newCropW) / 2;
+      cropY += (cropH - newCropH) / 2;
+      cropW = newCropW; cropH = newCropH;
+    }
     try { tctx.drawImage(thumb, cropX, cropY, cropW, cropH, 0, 0, sw, sh); } catch (e) { return; }
     ctx.imageSmoothingEnabled = false;
     ctx.clearRect(0, 0, w * dpr, h * dpr);
