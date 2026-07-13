@@ -308,14 +308,14 @@ class Component extends DCLogic {
         const r = row.getBoundingClientRect();
         const rowCenter = r.top + r.height / 2;
         const dist = Math.abs(rowCenter - center);
-        const flat = vh * 0.32;
-        const t = dist <= flat ? 0 : Math.min(1, (dist - flat) / (vh * 0.55));
-        const opacity = 1 - t * 0.75; // 1 → 0.25
+        const flat = vh * 0.24;
+        const t = dist <= flat ? 0 : Math.min(1, (dist - flat) / (vh * 0.32));
+        const opacity = 1 - t * 0.85; // 1 → 0.15
         row.querySelectorAll(".m-proj-text").forEach((el) => { el.style.opacity = String(opacity); });
         const thumb = row.querySelector(".m-proj-thumb");
         if (thumb) {
-          thumb.style.filter = `grayscale(${t}) contrast(${1 + t * 0.35}) brightness(${1 + t * 0.05})`;
-          const zoom = 1 + (1 - t) * 0.05; // up to 1.05x at center
+          thumb.style.filter = `grayscale(${t}) contrast(${1 + t * 0.6}) brightness(${1 + t * 0.08})`;
+          const zoom = 1 + (1 - t) * 0.04; // up to 1.04x at center
           const base = thumb.dataset.baseTransform;
           const baseTf = base && base !== "none" ? base + " " : "";
           thumb.style.transform = `${baseTf}scale(${zoom})`;
