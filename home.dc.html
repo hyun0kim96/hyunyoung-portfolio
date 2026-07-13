@@ -209,8 +209,9 @@
               <span style="flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis;">{{ proj.dTitle }}</span>
               <span style="flex: none; color: #999; margin-left: auto;">{{ proj.metaYear }}</span><span style="flex: none; color: #999; display: none;">{{ proj.metaTag }}</span>
             </div>
-            <div style="grid-column: 2; width: calc(100% + 12px); margin-right: -12px; aspect-ratio: 285 / 33.8; overflow: hidden;">
-              <img class="m-proj-thumb" src="{{ proj.thumbSrc }}" alt="{{ proj.dTitle }}" data-base-transform="{{ proj.imgTransform }}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: {{ proj.imgObjPos }}; transform: {{ proj.imgTransform }}; transform-origin: center bottom; filter: grayscale(1); transition: filter 0.25s ease-out, transform 0.25s ease-out; will-change: filter, transform;">
+            <div style="grid-column: 2; width: calc(100% + 12px); margin-right: -12px; aspect-ratio: 285 / 33.8; overflow: hidden; position: relative;">
+              <img class="m-proj-thumb" src="{{ proj.thumbSrc }}" alt="{{ proj.dTitle }}" data-base-transform="{{ proj.imgTransform }}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: {{ proj.imgObjPos }}; transform: {{ proj.imgTransform }}; transform-origin: center bottom; filter: grayscale(1); transition: filter 0.25s ease-out; will-change: filter;">
+              <canvas class="m-proj-pixel" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 0.15s ease-out; will-change: opacity;"></canvas>
             </div>
           </div>
         </sc-for>
@@ -314,11 +315,8 @@ class Component extends DCLogic {
         row.querySelectorAll(".m-proj-text").forEach((el) => { el.style.opacity = String(opacity); });
         const thumb = row.querySelector(".m-proj-thumb");
         if (thumb) {
-          thumb.style.filter = `grayscale(${t}) contrast(${1 + t * 0.6}) brightness(${1 + t * 0.08})`;
-          const zoom = 1 + (1 - t) * 0.04; // up to 1.04x at center
-          const base = thumb.dataset.baseTransform;
-          const baseTf = base && base !== "none" ? base + " " : "";
-          thumb.style.transform = `${baseTf}scale(${zoom})`;
+          thumb.style.filter = `grayscale(${t})`;
+          this.drawThumbPixelation(row, thumb, t);
         }
       });
     };
@@ -328,6 +326,39 @@ class Component extends DCLogic {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     requestAnimationFrame(update);
+  }
+
+  // Draws a pixelated version of `thumb` onto its sibling <canvas class="m-proj-pixel">,
+  // block size scaling with `t` (0 = no effect/original shows through, 1 = large blocks).
+  drawThumbPixelation(row, thumb, t) {
+    const cv = row.querySelector(".m-proj-pixel");
+    if (!cv) return;
+    if (t <= 0.01) { cv.style.opacity = "0"; return; }
+    cv.style.opacity = String(t);
+
+    const rect = thumb.getBoundingClientRect();
+    const w = Math.max(1, Math.round(rect.width));
+    const h = Math.max(1, Math.round(rect.height));
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const block = Math.round(1 + t * 17); // 1 → 18px blocks at max effect
+    if (cv._lastBlock === block && cv._lastW === w && cv._lastH === h) return;
+    cv._lastBlock = block; cv._lastW = w; cv._lastH = h;
+
+    cv.width = w * dpr; cv.height = h * dpr;
+    const ctx = cv.getContext("2d");
+    const sw = Math.max(1, Math.round((w * dpr) / block));
+    const sh = Math.max(1, Math.round((h * dpr) / block));
+    if (!cv._tmp) cv._tmp = document.createElement("canvas");
+    const tmp = cv._tmp;
+    tmp.width = sw; tmp.height = sh;
+    const tctx = tmp.getContext("2d");
+    tctx.imageSmoothingEnabled = true;
+    tctx.clearRect(0, 0, sw, sh);
+    tctx.filter = thumb.style.filter || "none";
+    try { tctx.drawImage(thumb, 0, 0, sw, sh); } catch (e) { return; }
+    ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, w * dpr, h * dpr);
+    ctx.drawImage(tmp, 0, 0, sw, sh, 0, 0, w * dpr, h * dpr);
   }
 
   // Arrow hint: draws big-block → crisp pixelation while the stroke trims in,
