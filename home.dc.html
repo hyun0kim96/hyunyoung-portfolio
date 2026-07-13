@@ -203,9 +203,9 @@
       <div style="text-transform: uppercase; letter-spacing: 0.01em; font-size: 14.25px; margin-bottom: 20px; -webkit-text-stroke: 0.125px currentColor;">Projects</div>
       <div style="display: flex; flex-direction: column; gap: 14px;">
         <sc-for list="{{ mProjects }}" as="proj" hint-placeholder-count="8">
-          <div class="m-proj-row" onClick="{{ proj.onClick }}" style="cursor: {{ proj.cursor }}; display: grid; grid-template-columns: auto 1fr; column-gap: 10px; row-gap: 6px; align-items: baseline; opacity: 0.25; transition: opacity 0.25s ease-out; will-change: opacity;">
-            <span style="font-size: 14.25px; color: #111; line-height: 1.15;">{{ proj.num }}</span>
-            <div style="color: #111; font-size: 14.25px; line-height: 1.15; display: flex; gap: 10px; white-space: nowrap; align-items: baseline; min-width: 0; width: calc(100% + 12px); margin-right: -12px;">
+          <div class="m-proj-row" onClick="{{ proj.onClick }}" style="cursor: {{ proj.cursor }}; display: grid; grid-template-columns: auto 1fr; column-gap: 10px; row-gap: 6px; align-items: baseline;">
+            <span class="m-proj-text" style="font-size: 14.25px; color: #111; line-height: 1.15; opacity: 0.25; transition: opacity 0.25s ease-out; will-change: opacity;">{{ proj.num }}</span>
+            <div class="m-proj-text" style="color: #111; font-size: 14.25px; line-height: 1.15; display: flex; gap: 10px; white-space: nowrap; align-items: baseline; min-width: 0; width: calc(100% + 12px); margin-right: -12px; opacity: 0.25; transition: opacity 0.25s ease-out; will-change: opacity;">
               <span style="flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis;">{{ proj.dTitle }}</span>
               <span style="flex: none; color: #999; margin-left: auto;">{{ proj.metaYear }}</span><span style="flex: none; color: #999; display: none;">{{ proj.metaTag }}</span>
             </div>
@@ -311,11 +311,11 @@ class Component extends DCLogic {
         const flat = vh * 0.32;
         const t = dist <= flat ? 0 : Math.min(1, (dist - flat) / (vh * 0.55));
         const opacity = 1 - t * 0.75; // 1 → 0.25
-        row.style.opacity = String(opacity);
+        row.querySelectorAll(".m-proj-text").forEach((el) => { el.style.opacity = String(opacity); });
         const thumb = row.querySelector(".m-proj-thumb");
         if (thumb) {
-          thumb.style.filter = `grayscale(${t})`;
-          const zoom = 1 + (1 - t) * 0.12; // up to 1.12x at center
+          thumb.style.filter = `grayscale(${t}) contrast(${1 + t * 0.35}) brightness(${1 + t * 0.05})`;
+          const zoom = 1 + (1 - t) * 0.05; // up to 1.05x at center
           const base = thumb.dataset.baseTransform;
           const baseTf = base && base !== "none" ? base + " " : "";
           thumb.style.transform = `${baseTf}scale(${zoom})`;
