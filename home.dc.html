@@ -58,7 +58,7 @@
   .mobile-view { display: none; }
 
   /* ---------- Mobile (dedicated design) ---------- */
-  @media (max-width: 760px) {
+  @media (max-width: 999px) {
     html { scroll-padding-top: 48px; scroll-behavior: auto; }
     body { scroll-behavior: auto; }
     .home-page { padding: 0 !important; }
@@ -67,6 +67,7 @@
     .mobile-view { display: flex !important; }
     .m-topbar { position: sticky; top: 0; z-index: 60; }
     .m-intro { min-height: calc(100dvh - 48px) !important; }
+    .om-intro-loader-pct { font-size: 14px !important; }
   }
   .m-scrollhint { display: flex; align-items: center; transition: opacity 0.6s ease; will-change: opacity; }
   .m-copyright { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; }
@@ -78,7 +79,7 @@
 
   <!-- Intro loader — solid white screen with a 0% → 100% count-up, then fades out -->
   <div ref="{{ loaderRef }}" style="position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; pointer-events: none; background: #ffffff;">
-    <div style="font-family: 'Suisse Intl', sans-serif; font-size: 15px; letter-spacing: 0.01em; color: #111111; text-transform: uppercase; -webkit-font-smoothing: antialiased;"><span ref="{{ pctRef }}">0</span>%</div>
+    <div class="om-intro-loader-pct" style="font-family: 'Suisse Intl', sans-serif; font-size: 15px; letter-spacing: 0.01em; color: #111111; text-transform: uppercase; -webkit-font-smoothing: antialiased;"><span ref="{{ pctRef }}">0</span>%</div>
   </div>
 
   <div class="pixel-wrap" ref="{{ pixWrapRef }}" style="width: 100%;">
@@ -309,7 +310,7 @@ class Component extends DCLogic {
   // Mobile only: fade each project row in/out based on how close it is to the
   // vertical center of the viewport, for a playful scroll-linked effect.
   setupProjRowFade() {
-    const mq = window.matchMedia("(max-width: 760px)");
+    const mq = window.matchMedia("(max-width: 999px)");
     if (!mq.matches) return;
     let ticking = false;
     const update = () => {
@@ -539,7 +540,7 @@ class Component extends DCLogic {
   // intro jumps to the projects section; scrolling up while at the projects top
   // jumps back to the intro. Everything below projects scrolls freely.
   setupMobileSnap() {
-    const mq = window.matchMedia("(max-width: 760px)");
+    const mq = window.matchMedia("(max-width: 999px)");
     const HEADER = 48;
     let snapping = false, touchStartY = null, locked = false;
 
@@ -649,7 +650,7 @@ class Component extends DCLogic {
     }
   }
   _setupMobileSnap_disabled() {
-    const mq = window.matchMedia("(max-width: 760px)");
+    const mq = window.matchMedia("(max-width: 999px)");
     const HEADER = 48;
     const DUR = 950;
     const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
