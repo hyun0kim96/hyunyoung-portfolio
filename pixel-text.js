@@ -36,7 +36,12 @@
     }
     function activeColor() { return pageIsDark() ? darkColor : color; }
     var maxBlock = parseFloat(cv.getAttribute("data-max")) || 5; // px (2x of the old 2.5)
+    var altFontRandom = cv.getAttribute("data-alt-font-random") || ""; // comma list, pick one per load
     var altFont = cv.getAttribute("data-alt-font") || "";        // pixelated glyphs use this
+    if (!altFont && altFontRandom) {
+      var altChoices = altFontRandom.split(",").map(function (s) { return s.trim(); }).filter(Boolean);
+      if (altChoices.length) altFont = altChoices[Math.floor(Math.random() * altChoices.length)];
+    }
     var baseFont = cv.getAttribute("data-font") || "Suisse Intl"; // crisp glyphs use this
     var fauxBold = parseFloat(cv.getAttribute("data-faux-bold")) || 0; // stroke width as fraction of fontPx
     var font = weight + " " + fontPx + 'px "' + baseFont + '", sans-serif';
