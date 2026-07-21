@@ -412,28 +412,61 @@ class Component extends DCLogic {
     if (cv._lastBlock === block && cv._lastW === w && cv._lastH === h && cv._lastT === roundedT) return;
     cv._lastBlock = block; cv._lastW = w; cv._lastH = h; cv._lastT = roundedT;
 
+    // The real bug: giving the canvas the NATURAL image's own aspect ratio and letting
+    // CSS object-fit:cover stretch it to the box meant the effective magnification
+    // depended on how far that ratio was from the box's own (very wide) ratio —
+    // different source photos got scaled by different amounts, so the "same" block
+    // count ended up a different size on screen per thumbnail (this is why Bloomy
+    // Sanctuary, a more square/portrait source, looked coarser than FLOW's wider one).
+    // Fix: give the canvas the BOX's own aspect ratio and crop the source into it
+    // ourselves, so the final CSS scale-to-box is the same uniform factor for every
+    // thumbnail — guaranteeing identical on-screen block size for all of them.
     if (!cv._objPos) {
       const csThumb = window.getComputedStyle(thumb);
       cv._objPos = csThumb.objectPosition || "50% 50%";
-      cv.style.objectPosition = cv._objPos;
-      // Match any CSS zoom (e.g. Bloomy Sanctuary's scale(2)) so the pixelated overlay
-      // frames the same content as the real <img> instead of jumping position on toggle.
-      if (csThumb.transform && csThumb.transform !== "none") {
-        cv.style.transform = csThumb.transform;
-        cv.style.transformOrigin = csThumb.transformOrigin;
-      }
+      cv._transform = csThumb.transform;
+      cv._transformOrigin = csThumb.transformOrigin;
     }
     const sw = Math.max(1, Math.round((w * dpr) / block));
-    const sh = Math.max(1, Math.round((h * dpr) / block));
-    // Downscale canvas keeps the natural image's own aspect ratio — object-fit:cover
-    // on the <canvas> element itself then crops it to the box exactly like the <img>.
-    const dsW = sw, dsH = Math.max(1, Math.round(sw * (nh0 / nw0)));
+    const boxRatio = w / h;
+    const dsW = sw, dsH = Math.max(1, Math.round(sw / boxRatio));
     cv.width = dsW; cv.height = dsH;
     const ctx = cv.getContext("2d");
     ctx.imageSmoothingEnabled = true;
     ctx.clearRect(0, 0, dsW, dsH);
     ctx.filter = thumb.style.filter || "none";
-    try { ctx.drawImage(thumb, 0, 0, nw0, nh0, 0, 0, dsW, dsH); } catch (e) { return; }
+    const posParts = (cv._objPos || "50% 50%").split(" ");
+    const pctOf = (v) => (v && v.endsWith("%")) ? parseFloat(v) / 100 : 0.5;
+    const px = pctOf(posParts[0]);
+    const py = pctOf(posParts[1]);
+    const imgRatio = nw0 / nh0;
+    let cropW, cropH;
+    if (imgRatio > boxRatio) { cropH = nh0; cropW = nh0 * boxRatio; }
+    else { cropW = nw0; cropH = nw0 / boxRatio; }
+    let cropX = (nw0 - cropW) * px;
+    let cropY = (nh0 - cropH) * py;
+    // Content match: replicate any CSS zoom transform (e.g. Bloomy Sanctuary's
+    // scale(2)) by shrinking the sampled crop around the same transform-origin —
+    // this is the part that was missing, which is why the pixelated frame showed
+    // completely different content (a wide shot) than the zoomed-in real <img>
+    // (a close-up). The canvas itself keeps the box's own aspect ratio (from the
+    // fix above), so this only affects WHAT is sampled, not the on-screen block size.
+    const tf = cv._transform;
+    let scaleFactor = 1;
+    if (tf && tf !== "none") {
+      const m = tf.match(/matrix\(([^,]+),/);
+      if (m) scaleFactor = parseFloat(m[1]) || 1;
+    }
+    if (scaleFactor !== 1) {
+      const originParts = (cv._transformOrigin || "50% 50%").split(" ");
+      const originX = originParts[0] && originParts[0].endsWith("%") ? parseFloat(originParts[0]) / 100 : 0.5;
+      const originY = originParts[1] && originParts[1].endsWith("%") ? parseFloat(originParts[1]) / 100 : 0.5;
+      const newCropW = cropW / scaleFactor, newCropH = cropH / scaleFactor;
+      cropX += (cropW - newCropW) * originX;
+      cropY += (cropH - newCropH) * originY;
+      cropW = newCropW; cropH = newCropH;
+    }
+    try { ctx.drawImage(thumb, cropX, cropY, cropW, cropH, 0, 0, dsW, dsH); } catch (e) { return; }
   }
 
   // Arrow hint: draws big-block → crisp pixelation while the stroke trims in,
@@ -1023,7 +1056,7 @@ class Component extends DCLogic {
       metaTag: " " + it.tag,
       metaCategory: catNames[it.tag] || it.tag,
       thumbSrc: it.mThumb || it.thumb || this.DEFAULT_IMG,
-      imgTransform: it.title.includes("Bloomy Sanctuary") ? "scale(2)" : "none",
+      imgTransform: "none",
       imgObjPos: it.title.includes("Bloomy Sanctuary") ? "center 72%" : (it.title.includes("Samsung VD") ? "center 65%" : (it.title.includes("KIA") ? "center 59%" : "center")),
       onClick: () => { if (it.href) window.location.href = it.href; },
       cursor: it.href ? "pointer" : "default",
