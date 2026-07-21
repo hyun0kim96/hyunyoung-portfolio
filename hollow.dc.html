@@ -51,13 +51,23 @@
   html, body { margin: 0 !important; padding: 0 !important; background: #ffffff !important; color: #111111; }
   * { box-sizing: border-box; }
   ::selection { background: transparent; color: #b4d100; }
-  a { color: inherit; text-decoration: none; }
+  a { color: var(--link-color, inherit); text-decoration: none; }
   .pd-mobile { display: none; }
+  :root {
+    --m-bg: #ffffff;
+    --m-text: #111111;
+    --m-muted: #999999;
+  }
   @media (max-width: 999px) {
     .pd-page { padding: 0 !important; }
     .pd-desktop, .pd-desktop-top { display: none !important; }
     .pd-mobile { display: flex !important; }
     .pd-foot { display: none !important; }
+  }
+  @media (max-width: 999px) and (prefers-color-scheme: dark) {
+    :root { color-scheme: dark; }
+    html, body { background: #1a1a1a !important; }
+    .pd-mobile { --m-bg: #1a1a1a; --m-text: #f2f0ec; --m-muted: #8a8a8a; --link-color: #f2f0ec; background: #1a1a1a; }
   }
 </style>
 <script src="pixel-text.js"></script>
@@ -133,7 +143,7 @@
   </div>
 
   <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
-  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box;">
+  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box; background: var(--m-bg);">
 
     <!-- Sticky home-button header -->
     <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
@@ -141,15 +151,15 @@
     </div>
 
     <!-- Title + subtitle -->
-    <div style="font-size: 16px; font-weight: 600; color: #111; letter-spacing: -0.02em; text-transform: capitalize; margin-top: 12px; opacity: 0.85;">Hollow</div>
-    <div style="font-size: 14px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.02em; line-height: 1.35; opacity: 0.85;">3D Media Art / 01 : 00 / Planning, Look Dev, Simulation</div>
+    <div style="font-size: 16px; font-weight: 600; color: var(--m-text); letter-spacing: -0.02em; text-transform: capitalize; margin-top: 12px; opacity: 0.85;">Hollow</div>
+    <div style="font-size: 14px; color: var(--m-muted); margin-top: 10px; letter-spacing: -0.02em; line-height: 1.35; opacity: 0.85;">3D Media Art / 01 : 00 / Planning, Look Dev, Simulation</div>
 
     <!-- Credits (indented, slash-separated, no line breaks) -->
     <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b; opacity: 0.85;">
       <div>d<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">'</span>strict Korea Inc. <br>for Media Art Platform LED.ART</div>
       <div style="display: flex; flex-direction: column; gap: 2px;">
         <div>2025-01 / 2025-02</div>
-        <div style="color: #11111199;">Resolution. 6K</div>
+        <div style="color: var(--m-muted);">Resolution. 6K</div>
       </div>
       <div>Creative Direction : d<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">'</span>strict Korea Inc. / Planning : Woojin Cho, Hyunyoung Kim / Look Development : Woojin Cho, Hyunyoung Kim / Simulation : Hyunyoung Kim / Compositing : Woojin Cho</div>
     </div>
@@ -181,7 +191,7 @@
     <div style="margin-top: 35px; text-wrap: pretty; font-size: 13px; line-height: 1.35; opacity: 0.85;">Through the movement of objects flowing into an empty structure, this work explores the transition from familiar reality toward new possibilities. Objects with different materials and trajectories interact within a shared space, creating an evolving visual composition. It is currently on view on the large media wall of Baskin Robbins at SPC<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">'</span>s Dogok headquarters.</div>
     <div style="margin-top: 40px; text-wrap: pretty; word-break: keep-all; font-size: 12.8px; opacity: 0.85;">비어 있는 구조 속으로 흘러가는 오브젝트의 움직임을 통해, 익숙한 현실에서 벗어나 새로운 가능성으로 이끌리는 감각을 표현하였습니다. 서로 다른 물성과 궤적을 지닌 오브젝트들이 하나의 공간 안에서 유기적인 관계를 형성하며 전개됩니다. 현재 SPC 도곡 사옥 베스킨라빈스 대형 미디어월에서 상영 중입니다.</div>
 
-    <div style="margin-top: 64px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; opacity: 0.85;">© 2026 Hyunyoung Kim. All rights reserved.</div>
+    <div style="margin-top: 64px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: var(--m-muted); opacity: 0.85;">© 2026 Hyunyoung Kim. All rights reserved.</div>
 
   </div><!-- /pd-mobile -->
 

@@ -51,13 +51,23 @@
   html, body { margin: 0 !important; padding: 0 !important; background: #ffffff !important; color: #111111; }
   * { box-sizing: border-box; }
   ::selection { background: transparent; color: #b4d100; }
-  a { color: inherit; text-decoration: none; }
+  a { color: var(--link-color, inherit); text-decoration: none; }
   .pd-mobile { display: none; }
+  :root {
+    --m-bg: #ffffff;
+    --m-text: #111111;
+    --m-muted: #999999;
+  }
   @media (max-width: 999px) {
     .pd-page { padding: 0 !important; }
     .pd-desktop, .pd-desktop-top { display: none !important; }
     .pd-mobile { display: flex !important; }
     .pd-foot { display: none !important; }
+  }
+  @media (max-width: 999px) and (prefers-color-scheme: dark) {
+    :root { color-scheme: dark; }
+    html, body { background: #1a1a1a !important; }
+    .pd-mobile { --m-bg: #1a1a1a; --m-text: #f2f0ec; --m-muted: #8a8a8a; --link-color: #f2f0ec; background: #1a1a1a; }
   }
 </style>
 <script src="pixel-text.js"></script>
@@ -127,20 +137,20 @@
   </div>
 
   <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
-  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box;">
+  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box; background: var(--m-bg);">
 
     <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
       <a href="/" style="display: inline-block; line-height: 0; font-style: normal;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font-random="Ballet,MrsSaintDelafield,TangerineBold" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="13" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 190.7px; height: 20.8px;"></canvas></a>
     </div>
 
-    <div style="font-size: 16px; font-weight: 600; color: #111; letter-spacing: -0.02em; margin-top: 12px; opacity: 0.85;">Blooming : Cherry Blossom</div>
-    <div style="font-size: 14px; color: #6b6b6b; margin-top: 10px; letter-spacing: -0.02em; line-height: 1.35; opacity: 0.85;">3D Media Art / 01 : 06 / Planning, Look Dev, Simulation</div>
+    <div style="font-size: 16px; font-weight: 600; color: var(--m-text); letter-spacing: -0.02em; margin-top: 12px; opacity: 0.85;">Blooming : Cherry Blossom</div>
+    <div style="font-size: 14px; color: var(--m-muted); margin-top: 10px; letter-spacing: -0.02em; line-height: 1.35; opacity: 0.85;">3D Media Art / 01 : 06 / Planning, Look Dev, Simulation</div>
 
     <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b; opacity: 0.85;">
       <div>d<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">'</span>strict Korea Inc. <br>for Media Art Platform LED.ART</div>
       <div style="display: flex; flex-direction: column; gap: 2px;">
         <div>2023-06 / 2023-11</div>
-        <div style="color: #11111199;">Resolution. 6K</div>
+        <div style="color: var(--m-muted);">Resolution. 6K</div>
       </div>
       <div>Creative Direction : d<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">'</span>strict Korea Inc. / Planning : Hyunyoung Kim / Look Development : Hyunyoung Kim / Simulation : Hyunyoung Kim / Compositing : Hyunyoung Kim</div>
     </div>
@@ -172,7 +182,7 @@
     <div style="margin-top: 35px; text-wrap: pretty; font-size: 13px; line-height: 1.35; opacity: 0.85;">Centered around a horizontally extended cherry blossom tree, this work creates a contemporary spatial composition inspired by the atmosphere of spring. The concept was developed through AI-assisted ideation and was presented on The Hyundai Seoul media wall during its 3rd Anniversary event in 2024.</div>
     <div style="margin-top: 40px; text-wrap: pretty; word-break: keep-all; font-size: 12.8px; opacity: 0.85;">가로로 길게 뻗은 벚꽃나무를 중심으로 봄의 분위기와 현대적인 공간감을 표현하였습니다. AI 기반의 초기 콘셉트 리서치를 바탕으로 레이아웃을 발전시켰으며, 2024년 더현대서울 3주년 기념행사에서 더현대서울 미디어월에 상영되었습니다.</div>
 
-    <div style="margin-top: 64px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; opacity: 0.85;">© 2026 Hyunyoung Kim. All rights reserved.</div>
+    <div style="margin-top: 64px; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: var(--m-muted); opacity: 0.85;">© 2026 Hyunyoung Kim. All rights reserved.</div>
 
   </div><!-- /pd-mobile -->
 

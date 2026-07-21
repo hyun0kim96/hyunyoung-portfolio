@@ -65,7 +65,7 @@
   html { scrollbar-gutter: stable; }
   * { box-sizing: border-box; }
   ::selection { background: transparent; color: #b4d100; }
-  a { color: var(--link-color, inherit); text-decoration: none; }
+  a { color: inherit; text-decoration: none; }
   a.link-arrow { position: relative; transition: color 0.2s ease; }
   a.link-arrow::before { content: "\2197"; position: absolute; left: -1.15em; top: 0; opacity: 0; transition: opacity 0.25s ease; }
   a.link-arrow:hover::before { opacity: 1; }
@@ -76,12 +76,6 @@
   .mobile-view { display: none; }
 
   /* ---------- Mobile (dedicated design) ---------- */
-  :root {
-    --m-bg: #ffffff;
-    --m-text: #111111;
-    --m-muted: #999999;
-    --m-topbar-bg: rgba(255,255,255,0.72);
-  }
   @media (max-width: 999px) {
     html { scroll-padding-top: 48px; scroll-behavior: auto; }
     body { scroll-behavior: auto; }
@@ -93,14 +87,6 @@
     .m-intro { min-height: calc(100dvh - 48px) !important; }
     .om-intro-loader-pct { font-size: 14px !important; }
   }
-  @media (max-width: 999px) and (prefers-color-scheme: dark) {
-    :root { color-scheme: dark; }
-    html, body { background: #1a1a1a !important; }
-    .mobile-view { --m-bg: #1a1a1a; --m-text: #f2f0ec; --m-muted: #8a8a8a; --m-topbar-bg: rgba(26,26,26,0.72); --link-color: #f2f0ec; background: #1a1a1a; }
-    .mobile-view .m-scrollhint svg path { stroke: #f2f0ec !important; }
-    #om-mobile-loader-overlay { background: #1a1a1a !important; }
-    #om-mobile-loader-overlay .om-intro-loader-pct { color: #f2f0ec !important; }
-  }
   .m-scrollhint { display: flex; align-items: center; transition: opacity 0.6s ease; will-change: opacity; }
   .m-copyright { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; }
 </style>
@@ -110,7 +96,7 @@
 <div class="home-page" style="font-family: 'Suisse Intl', sans-serif; background: #ffffff; color: #111111; min-height: 100vh; width: 100%; font-size: 15px; line-height: 1.45; letter-spacing: -0.015em; -webkit-font-smoothing: antialiased; padding: 48px 48px 48px; display: flex; flex-direction: column;">
 
   <!-- Intro loader — solid white screen with a 0% → 100% count-up, then fades out -->
-  <div ref="{{ loaderRef }}" id="om-mobile-loader-overlay" style="position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; pointer-events: none; background: #ffffff;">
+  <div ref="{{ loaderRef }}" style="position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; pointer-events: none; background: #ffffff;">
     <div class="om-intro-loader-pct" style="font-family: 'Suisse Intl', sans-serif; font-size: 15px; letter-spacing: 0.01em; color: #111111; text-transform: uppercase; -webkit-font-smoothing: antialiased;"><span ref="{{ pctRef }}">0</span>%</div>
   </div>
 
@@ -201,15 +187,15 @@
   </div><!-- /flex row -->
 
   <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
-  <div class="mobile-view" style="flex-direction: column; width: 100%; background: var(--m-bg);">
+  <div class="mobile-view" style="flex-direction: column; width: 100%;">
 
     <!-- Sticky home-button header — always pinned at top while scrolling -->
-    <div class="m-topbar" style="text-transform: uppercase; letter-spacing: 0.01em; background: var(--m-topbar-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px 24px 10px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);"><a href="/" style="display: inline-block; line-height: 0;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font-random="Ballet,MrsSaintDelafield,TangerineBold" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="13" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 190.7px; height: 20.8px;"></canvas></a></div>
+    <div class="m-topbar" style="text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px 24px 10px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);"><a href="/" style="display: inline-block; line-height: 0;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font-random="Ballet,MrsSaintDelafield,TangerineBold" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="13" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 190.7px; height: 20.8px;"></canvas></a></div>
 
     <!-- M1 · Intro — fills the full screen -->
     <section class="m-section m-intro" style="min-height: 100dvh; display: flex; flex-direction: column; padding: 10px 24px 34px; box-sizing: border-box; font-size: 12px;">
       <div style="display: flex; flex-direction: column; gap: 17px; max-width: 560px;">
-        <div style="color: var(--m-text); line-height: 1.28; font-size: 13.5px;">Working across commercial moving image and media art for physical spaces, the practice creates visual experiences through 3D motion design, with a particular interest in simulation-based motion and dynamic visual effects. <br><br>Based in Seoul, Republic of Korea<img src="kr-flag.png" alt="🇰🇷" style="height: 0.907em; width: auto; vertical-align: -0.16em; display: inline-block; margin: 0 0.25em;">, focused on crafting vibrant graphics through the integration of motion, typography, graphic design, and generative technologies.</div>
+        <div style="color: #111; line-height: 1.28; font-size: 13.5px;">Working across commercial moving image and media art for physical spaces, the practice creates visual experiences through 3D motion design, with a particular interest in simulation-based motion and dynamic visual effects. <br><br>Based in Seoul, Republic of Korea<img src="kr-flag.png" alt="🇰🇷" style="height: 0.907em; width: auto; vertical-align: -0.16em; display: inline-block; margin: 0 0.25em;">, focused on crafting vibrant graphics through the integration of motion, typography, graphic design, and generative technologies.</div>
         <div class="contact" style="font-size: 13.5px;">
           <div><a class="link-arrow allow-select" href="mailto:hello.hyun0kim@gmail.com">hello.hyun0kim@gmail.com</a></div>
           <div><a class="link-arrow" href="https://www.instagram.com/hyun0kim/" target="_blank" rel="noopener noreferrer">@hyun0kim</a></div>
@@ -249,10 +235,10 @@
       <div style="display: flex; flex-direction: column; gap: 11.2px;">
         <sc-for list="{{ mProjects }}" as="proj" hint-placeholder-count="8">
           <div class="m-proj-row" onClick="{{ proj.onClick }}" style="cursor: {{ proj.cursor }}; display: grid; grid-template-columns: auto 1fr; column-gap: 8px; row-gap: 4.8px; align-items: baseline;">
-            <span class="m-proj-text" style="font-size: 11.4px; color: var(--m-text); line-height: 1.15; opacity: 0.25; transition: opacity 0.25s ease-out; will-change: opacity;">{{ proj.num }}</span>
-            <div class="m-proj-text" style="color: var(--m-text); font-size: 11.4px; line-height: 1.15; display: flex; gap: 8px; white-space: nowrap; align-items: baseline; min-width: 0; width: calc(100% + 9.6px); margin-right: -9.6px; opacity: 0.25; transition: opacity 0.25s ease-out; will-change: opacity;">
+            <span class="m-proj-text" style="font-size: 11.4px; color: #111; line-height: 1.15; opacity: 0.25; transition: opacity 0.25s ease-out; will-change: opacity;">{{ proj.num }}</span>
+            <div class="m-proj-text" style="color: #111; font-size: 11.4px; line-height: 1.15; display: flex; gap: 8px; white-space: nowrap; align-items: baseline; min-width: 0; width: calc(100% + 9.6px); margin-right: -9.6px; opacity: 0.25; transition: opacity 0.25s ease-out; will-change: opacity;">
               <span style="flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis;">{{ proj.dTitle }}</span>
-              <span style="flex: none; color: var(--m-muted); margin-left: auto;">{{ proj.metaYear }}</span><span style="flex: none; color: var(--m-muted); display: none;">{{ proj.metaTag }}</span>
+              <span style="flex: none; color: #999; margin-left: auto;">{{ proj.metaYear }}</span><span style="flex: none; color: #999; display: none;">{{ proj.metaTag }}</span>
             </div>
             <div style="grid-column: 2; width: calc(100% + 9.6px); margin-right: -9.6px; aspect-ratio: 285 / 33.8; overflow: hidden; position: relative;">
               <img class="m-proj-thumb" src="{{ proj.thumbSrc }}" alt="{{ proj.dTitle }}" data-base-transform="{{ proj.imgTransform }}" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: {{ proj.imgObjPos }}; transform: {{ proj.imgTransform }}; transform-origin: center bottom; filter: grayscale(1); transition: filter 0.25s ease-out; will-change: filter;">
@@ -267,15 +253,15 @@
     <section class="m-section" style="padding: 81.6px 19.2px 17.6px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 35.2px; font-size: 11.4px; line-height: 1.28;">
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <div style="text-transform: uppercase; letter-spacing: 0.01em; -webkit-text-stroke: 0.125px currentColor;">Exhibitions</div>
-        <div style="color: var(--m-text);"><span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>YONGSAN DOPAMINE STATION<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2026 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>HANGANG PPFUL CULTURAL COMPLEX<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2025 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>GYEONGGI CREDIT GUARANTEE FOUNDATION<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Gyeonggi, 2025 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>RAEMIAN GALLERY<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2025 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>CENTERFIELD<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2025 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>THE HYUNDAI 3RD ANNIVERSARY EVENT<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2024 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>EMBRACING JIRISAN<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Gurye, 2022</div>
+        <div style="color: #111;"><span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>YONGSAN DOPAMINE STATION<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2026 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>HANGANG PPFUL CULTURAL COMPLEX<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2025 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>GYEONGGI CREDIT GUARANTEE FOUNDATION<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Gyeonggi, 2025 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>RAEMIAN GALLERY<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2025 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>CENTERFIELD<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2025 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>THE HYUNDAI 3RD ANNIVERSARY EVENT<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Seoul, 2024 — <span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>EMBRACING JIRISAN<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">"</span>, Gurye, 2022</div>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <div style="text-transform: uppercase; letter-spacing: 0.01em; -webkit-text-stroke: 0.125px currentColor;">Career</div>
         <div style="display: flex; flex-direction: column; gap: 4.8px; text-transform: uppercase;">
-          <div style="display: grid; grid-template-columns: 20.8px 1fr; column-gap: 8px;"><div style="color: var(--m-muted);">/</div><div>Nerdy Artist Union<br>Motion Graphics Designer (2025 – Present)</div></div>
-          <div style="display: grid; grid-template-columns: 20.8px 1fr; column-gap: 8px;"><div style="color: var(--m-muted);">/</div><div>d<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">'</span>strict Korea Inc., Media Art Team <br>Media Art Designer (2023 – 2025)</div></div>
-          <div style="display: grid; grid-template-columns: 20.8px 1fr; column-gap: 8px;"><div style="color: var(--m-muted);">/</div><div>MUSINSA Co. Ltd., Content Design Team<br>Intern Graphic Designer (2019)</div></div>
+          <div style="display: grid; grid-template-columns: 20.8px 1fr; column-gap: 8px;"><div style="color: #999;">/</div><div>Nerdy Artist Union<br>Motion Graphics Designer (2025 – Present)</div></div>
+          <div style="display: grid; grid-template-columns: 20.8px 1fr; column-gap: 8px;"><div style="color: #999;">/</div><div>d<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">'</span>strict Korea Inc., Media Art Team <br>Media Art Designer (2023 – 2025)</div></div>
+          <div style="display: grid; grid-template-columns: 20.8px 1fr; column-gap: 8px;"><div style="color: #999;">/</div><div>MUSINSA Co. Ltd., Content Design Team<br>Intern Graphic Designer (2019)</div></div>
         </div>
       </div>
 
