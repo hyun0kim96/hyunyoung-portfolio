@@ -102,7 +102,7 @@
     #om-mobile-loader-overlay .om-intro-loader-pct { color: #f2f0ec !important; }
   }
   .m-scrollhint { display: flex; align-items: center; transition: opacity 0.6s ease; will-change: opacity; }
-  .m-copyright { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: #999; }
+  .m-copyright { font-size: 8pt; text-transform: uppercase; letter-spacing: 0.01em; color: var(--m-muted, #999); }
 </style>
 <script src="pixel-text.js"></script>
 </helmet>
@@ -201,7 +201,7 @@
   </div><!-- /flex row -->
 
   <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
-  <div class="mobile-view" style="flex-direction: column; width: 100%; background: var(--m-bg);">
+  <div class="mobile-view" style="flex-direction: column; width: 100%; background: var(--m-bg); color: var(--m-text);">
 
     <!-- Sticky home-button header — always pinned at top while scrolling -->
     <div class="m-topbar" style="text-transform: uppercase; letter-spacing: 0.01em; background: var(--m-topbar-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px 24px 10px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);"><a href="/" style="display: inline-block; line-height: 0;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font-random="Ballet,MrsSaintDelafield,TangerineBold" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="13" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 190.7px; height: 20.8px;"></canvas></a></div>
@@ -413,8 +413,15 @@ class Component extends DCLogic {
     cv._lastBlock = block; cv._lastW = w; cv._lastH = h; cv._lastT = roundedT;
 
     if (!cv._objPos) {
-      cv._objPos = window.getComputedStyle(thumb).objectPosition || "50% 50%";
+      const csThumb = window.getComputedStyle(thumb);
+      cv._objPos = csThumb.objectPosition || "50% 50%";
       cv.style.objectPosition = cv._objPos;
+      // Match any CSS zoom (e.g. Bloomy Sanctuary's scale(2)) so the pixelated overlay
+      // frames the same content as the real <img> instead of jumping position on toggle.
+      if (csThumb.transform && csThumb.transform !== "none") {
+        cv.style.transform = csThumb.transform;
+        cv.style.transformOrigin = csThumb.transformOrigin;
+      }
     }
     const sw = Math.max(1, Math.round((w * dpr) / block));
     const sh = Math.max(1, Math.round((h * dpr) / block));
