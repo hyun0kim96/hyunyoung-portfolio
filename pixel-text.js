@@ -21,6 +21,16 @@
     // near-white text on white (looks gray). Walking the ancestors also lets a
     // dark-mode tool (Safari Noir) that injects a dark background flip us to light.
     function pageIsDark() {
+      // Fast, reliable path: this project's dark mode is deterministically scoped to
+      // "mobile viewport + OS dark scheme" (see the @media (max-width: 999px) and
+      // (prefers-color-scheme: dark) blocks) — check that directly first instead of
+      // relying solely on walking ancestor backgroundColor, which can misfire if an
+      // ancestor's computed background hasn't fully resolved yet at init time.
+      try {
+        if (window.matchMedia && window.matchMedia("(max-width: 999px) and (prefers-color-scheme: dark)").matches) {
+          return true;
+        }
+      } catch (e) {}
       var el = cv;
       while (el) {
         var bg = "";

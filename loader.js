@@ -7,11 +7,13 @@
 
   // ---- Full-screen white overlay with centered % ----
   var el = document.createElement("div");
+  el.id = "om-mobile-loader-overlay";
   el.setAttribute("style",
     "position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;" +
     "background:#ffffff;transition:opacity 0.5s ease;pointer-events:none;font-family:'Suisse Intl',sans-serif;");
   el.innerHTML =
-    '<style>@media (max-width: 999px){ .om-intro-loader-pct{ font-size:14px !important; } }</style>' +
+    '<style>@media (max-width: 999px){ .om-intro-loader-pct{ font-size:14px !important; } }' +
+    '@media (max-width: 999px) and (prefers-color-scheme: dark){ #om-mobile-loader-overlay{ background:#1a1a1a !important; } #om-mobile-loader-overlay .om-intro-loader-pct{ color:#f2f0ec !important; } }</style>' +
     '<div class="om-intro-loader-pct" style="font-size:15px;letter-spacing:0.01em;color:#111111;text-transform:uppercase;-webkit-font-smoothing:antialiased;background:transparent;padding:6px 13px;"><span>0</span>%</div>';
 
   function run() {

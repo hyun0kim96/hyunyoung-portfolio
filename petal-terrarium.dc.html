@@ -57,6 +57,7 @@
     --m-bg: #ffffff;
     --m-text: #111111;
     --m-muted: #999999;
+    --m-topbar-bg: rgba(255,255,255,0.72);
   }
   @media (max-width: 999px) {
     .pd-page { padding: 0 !important; }
@@ -67,13 +68,13 @@
   @media (max-width: 999px) and (prefers-color-scheme: dark) {
     :root { color-scheme: dark; }
     html, body { background: #1a1a1a !important; }
-    .pd-mobile { --m-bg: #1a1a1a; --m-text: #f2f0ec; --m-muted: #8a8a8a; --link-color: #f2f0ec; background: #1a1a1a; }
+    .pd-mobile { --m-bg: #1a1a1a; --m-text: #f2f0ec; --m-muted: #8a8a8a; --m-topbar-bg: rgba(26,26,26,0.72); --link-color: #f2f0ec; background: #1a1a1a; }
   }
 </style>
 <script src="pixel-text.js"></script>
 </helmet>
 
-<div class="pd-page" style="font-family: 'Suisse Intl', sans-serif; background: #ffffff; color: #111111; min-height: 100vh; width: 100%; font-size: 15px; line-height: 1.45; letter-spacing: -0.015em; -webkit-font-smoothing: antialiased; padding: 48px 48px 96px;">
+<div class="pd-page" style="font-family: 'Suisse Intl', sans-serif; background: #ffffff; color: var(--m-text); min-height: 100vh; width: 100%; font-size: 15px; line-height: 1.45; letter-spacing: -0.015em; -webkit-font-smoothing: antialiased; padding: 48px 48px 96px;">
 
   <!-- Top bar (fixed on scroll) -->
   <div class="pd-desktop-top" style="display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 56px; margin-bottom: 32px; position: fixed; top: 0; padding-top: 48px; z-index: 10; background-color: #FFFFFF00">
@@ -90,7 +91,7 @@
     <div style="display: flex; flex-direction: column; gap: 24px; position: fixed; left: 48px; width: 360px; z-index: 5; top: 96px">
 
       <div style="display: flex; flex-direction: column; gap: 2px;">
-        <div style="text-transform: capitalize; letter-spacing: 0.01em">Terrarium Series<br><span style="letter-spacing: 0.15px; color: #11111180; position: static; text-align: left">&nbsp; &nbsp; &nbsp; Petal Terrarium / Greenery Waterfall</span></div>
+        <div style="text-transform: capitalize; letter-spacing: 0.01em">Terrarium Series<br><span style="letter-spacing: 0.15px; color: var(--m-muted); position: static; text-align: left">&nbsp; &nbsp; &nbsp; Petal Terrarium / Greenery Waterfall</span></div>
         <div style="text-transform: capitalize; letter-spacing: 0.01em; color: #11111180"></div><div style="color: #11111199; font-size: 13.8px; margin-top: 7px">3D Media Art / 01 : 06 / Planning, Look Dev, Simulation</div>
       </div>
 
@@ -157,17 +158,17 @@
   </div>
 
   <!-- ============ MOBILE VIEW (shown ≤760px) ============ -->
-  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box; background: var(--m-bg);">
+  <div class="pd-mobile" style="flex-direction: column; width: 100%; padding: 0 24px 22px; box-sizing: border-box; background: var(--m-bg); color: var(--m-text);">
 
-    <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
+    <div style="position: sticky; top: 0; z-index: 60; text-transform: uppercase; letter-spacing: 0.01em; background: var(--m-topbar-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 13px 24px 22px; margin: 0 -24px; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);">
       <a href="/" style="display: inline-block; line-height: 0; font-style: normal;"><canvas data-pixel-text="" data-text="HYUNYOUNG KIM" data-segments="0:1,1:2,2:3,3:4,4:5,5:6,6:7,7:8,8:9,10:11,11:12,12:13" data-alt-font-random="Ballet,MrsSaintDelafield,TangerineBold" data-font="Suisse Intl" data-weight="400" data-faux-bold="0.025" data-size="13" data-tracking="0.25px" data-max="3.5" data-color="#111111" width="440" height="48" style="display: block; width: 190.7px; height: 20.8px;"></canvas></a>
     </div>
 
     <div style="font-size: 16px; font-weight: 600; color: var(--m-text); letter-spacing: -0.02em; margin-top: 12px; opacity: 0.85;">Terrarium Series</div>
-    <div style="font-size: 15px; color: #11111180; margin-top: 4px; letter-spacing: -0.02em; opacity: 0.85;">Petal Terrarium / Greenery Waterfall</div>
+    <div style="font-size: 15px; color: var(--m-muted); margin-top: 4px; letter-spacing: -0.02em; opacity: 0.85;">Petal Terrarium / Greenery Waterfall</div>
     <div style="font-size: 14px; color: var(--m-muted); margin-top: 10px; letter-spacing: -0.02em; line-height: 1.35; opacity: 0.85;">3D Media Art / 01 : 06 / Planning, Look Dev, Simulation</div>
 
-    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: #2b2b2b; opacity: 0.85;">
+    <div style="padding-left: 72px; display: flex; flex-direction: column; gap: 12px; margin-top: 22px; font-size: 12.7px; color: var(--m-text); opacity: 0.85;">
       <div>d<span style="font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;">'</span>strict Korea Inc. <br>for Media Art Platform LED.ART</div>
       <div style="display: flex; flex-direction: column; gap: 2px;">
         <div>2024-06 / 2024-12</div>
